@@ -1,11 +1,30 @@
 import React from 'react';
-import {Carousel , Container, Row, Col} from 'react-bootstrap';
+import { Carousel, Container, Row, Col } from 'react-bootstrap';
+import { APICall, GET } from './helpers';
+import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    APICall = APICall.bind(this);
+    this.state = {
+      dailyNftData: {},
+    };
+  }
 
-  DailyNfts = () => {
+  componentDidMount() {
+    const url = `weneedthis`;
+    const response = APICall(GET, url);
+    if (response.data) {
+      this.setState({
+        dailyNftData: response.data,
+      });
+    }
+  }
+
+  DailyNfts() {
     return (
-      <Carousel className='daily-nfts'>
+      <Carousel className="daily-nfts">
         <Carousel.Item>
           <img
             className="d-block w-100 daily-img"
@@ -38,28 +57,33 @@ class App extends React.Component {
 
           <Carousel.Caption>
             <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    )
-  };
-
+    );
+  }
 
   render() {
-    const {
-      DailyNfts
-    } = this
+    const { DailyNfts } = this;
     return (
       <Container className="mt-5">
         <Row className="mb-5">
-          <Col className='welcome'>
+          <Col className="welcome">
             <DailyNfts />
           </Col>
         </Row>
         <Row>
-          <Col className='explanation'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <Col className="explanation">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
           </Col>
         </Row>
       </Container>
@@ -67,4 +91,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
