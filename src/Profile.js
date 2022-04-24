@@ -64,7 +64,10 @@ class Profile extends React.Component {
 
             <div>
               <Card id="wallet">
-                <h3 id="ether"><SiEthereum /></h3>
+                <div>
+                  <h3 id="ether"><SiEthereum /></h3>
+                  <img id="etherImg" src="https://res.cloudinary.com/dxg5jg10h/image/upload/v1650823993/M3RCADO-2_vq0dge.png" alt="" />
+                </div>
                 <div>
                   <h5>xxx-xxx-xxxx</h5>
                   <p>{user.email}</p>
