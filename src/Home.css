@@ -1,0 +1,24 @@
+.homeContainer {
+    height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+
+.MuiPaper-rounded {
+    margin: 8rem 0 2rem !important;
+    padding-left: 16px;
+    width: 420px;
+    height: 65px !important;
+    border-radius: 5px;
+    border: none;
+    background-image: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%) !important;
+    color: white;
+    font-size: 1.5rem;
+}

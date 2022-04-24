@@ -1,0 +1,15 @@
+.navBar {
+    background-color: rgb(11, 25, 41) !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 8;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}

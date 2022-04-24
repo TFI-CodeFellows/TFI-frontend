@@ -5,7 +5,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 import Button from '@mui/material/Button'
 import { IoMdTrash } from 'react-icons/io';
 import { MdModeEditOutline } from 'react-icons/md';
-import './nftcard.css'
+import './Nftcard.css'
 
 type NFT = {
   title: string,
@@ -41,7 +41,7 @@ class Nft extends React.Component<IProps, IState> {
   async componentDidMount() {
     const url = `${process.env.REACT_APP_HEROKU_URL}/nft`
     const response: { data: NFT[] } = await this.APICall(Method.GET, url)
-    if(response?.data) {
+    if (response?.data) {
       this.setState({
         nfts: response.data,
       })
@@ -49,7 +49,7 @@ class Nft extends React.Component<IProps, IState> {
   }
 
   render() {
-    return(
+    return (
       <div className="myNFTDiv">
         <h1>My NFTs</h1>
         <Row xs={1} sm={2} md={3} lg={3} xl={4} className='resRow'>
