@@ -66,7 +66,7 @@
 
 #wallet div p,
 #wallet div h5 {
-    color: rgb(1, 30, 60) !important;
+    color: white !important;
 }
 
 #bottomBtns {
@@ -84,4 +84,8 @@
 #ether {
     font-size: 3rem;
     margin: 1rem;
+}
+
+#etherImg {
+    width: 60%;
 }
