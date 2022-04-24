@@ -79,7 +79,7 @@ class Profile extends React.Component {
               </div>
             </div>
           </Drawer>
-          <MintingModal modal={true} hideModal={this.hideModal} />
+          <MintingModal modal={this.state.modal} hideModal={this.hideModal} />
         </>
       )
     );

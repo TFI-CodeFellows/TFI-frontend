@@ -1,4 +1,5 @@
 .nftForm {
+    margin: 1rem;
     display: flex;
     align-items: center;
     align-content: center;
@@ -6,71 +7,9 @@
 }
 
 .modal-content {
-    padding: 1rem;
-    padding-top: 2rem;
-    background-color: rgb(72, 70, 70);
+    background-color: rgb(72, 70, 70) !important;
 }
 
-.options-panel {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-.options-panel .MuiButtonBase-root {
-    margin: 0.5rem;
-}
-
-.flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.flex-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.options-panel .MuiButtonBase-root {
-    background-color: rgb(31, 36, 39) !important;
-}
-
-.icon-button {
-    padding: 0.5rem 1.25rem !important;
-}
-
-#canvas {
-    cursor: url('./brush.png'), auto;
-}
-
-#red-ink {
-    background-color: #e2503d !important;
-}
-
-#pink-ink {
-    background-color: #ca5db9 !important;
-}
-
-#blue-ink {
-    background-color: #256cde !important;
-}
-
-#yellow-ink {
-    background-color: #f1f366 !important;
-}
-
-#green-ink {
-    background-color: #82f366 !important;
-}
-
-#black-ink {
-    background-color: #1f1f1f !important;
-}
 
 #minNftBtn {
     background: linear-gradient(-225deg,
@@ -90,8 +29,4 @@
 #input {
     background-color: rgb(200, 195, 195);
     border: 1px solid rgb(200, 195, 195);
-}
-
-.sketching {
-    width: 50vw;
 }
