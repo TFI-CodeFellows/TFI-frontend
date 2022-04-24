@@ -11,12 +11,12 @@ class Home extends React.Component {
     return (
       <Nav className="navBar">
         <Nav.Item>
-          <Nav.Link to="/">
+          <Nav.Link href="/">
             <Image src="logo" alt="logo" />
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link to="/about">About Us</Nav.Link>
+          <Nav.Link href="/about">About Us</Nav.Link>
         </Nav.Item>
         <Nav.Item className="separator" />
         {!this.props.auth0.isAuthenticated ? (
