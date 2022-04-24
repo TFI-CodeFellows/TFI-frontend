@@ -12,7 +12,7 @@ class Home extends React.Component {
       <Nav className="navBar">
         <Nav.Item>
           <Nav.Link href="/">
-            <Image src="logo" alt="logo" />
+            <Image src="https://res.cloudinary.com/dxg5jg10h/image/upload/v1650823292/M-8_syklrg.png" alt="logo" id="storeLogo" />
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

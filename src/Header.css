@@ -6,6 +6,11 @@
     z-index: 8;
 }
 
+#storeLogo {
+    height: 3rem;
+    margin: 0.5rem;
+}
+
 .nav-item {
     display: flex;
     flex-direction: column;
