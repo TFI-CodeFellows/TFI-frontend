@@ -1,14 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
+import Button from '@mui/material/Button';
 
 const LogoutButton = () => {
-  const { logout, isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
-
+  const { logout } = useAuth0();
   return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
+    <Button variant="outlined" onClick={() => logout({ returnTo: window.location.origin })}>
       Log Out
-    </button>
+    </Button>
   );
 };
 
