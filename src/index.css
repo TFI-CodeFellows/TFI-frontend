@@ -46,3 +46,6 @@ code {
   background-color: black;
   color: white;
 }
+.profileImage{
+  border-radius: 200px;
+ }
