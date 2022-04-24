@@ -5,7 +5,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 import Button from '@mui/material/Button'
 import { IoMdTrash } from 'react-icons/io';
 import { MdModeEditOutline } from 'react-icons/md';
-import './Nftcard.css'
+import './nftcard.css'
 
 type NFT = {
   title: string,

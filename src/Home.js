@@ -1,7 +1,6 @@
 import React from 'react';
 import './Home.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import { APICall } from './helpers';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import NftCarousel from './Nftcarousel';
@@ -11,7 +10,6 @@ import Crypto from "./Crypto.js";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.APICall = APICall.bind(this);
     this.state = {
       dailyNftData: {},
       search: "",
