@@ -146,3 +146,12 @@
         margin: 5px 0;
     }
 }
+
+#addToCryptoWatchList:hover {
+    border-radius: 5%;
+    padding: none;
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%);
+}

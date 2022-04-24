@@ -18,3 +18,10 @@
     align-content: center;
     justify-content: center;
 }
+
+#loginBtn {
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%);
+}

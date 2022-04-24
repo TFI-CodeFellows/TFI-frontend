@@ -36,12 +36,12 @@
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    border: none !important;
 }
 
 #modalImg {
     width: 200px;
     height: 200px;
+    border-radius: 3%;
 }
 
 
@@ -49,4 +49,23 @@
 .modalHeader,
 .modalFooter {
     border: none !important;
+}
+
+.btn-close {
+    background-color: grey;
+}
+
+#addModalBtn {
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%) !important;
+    border: none;
+
+}
+
+#closeModalBtn {
+    background: grey;
+    border: 1px solid purple !important;
+    color: rgb(72, 70, 70)
 }
