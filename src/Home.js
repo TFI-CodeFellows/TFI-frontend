@@ -27,6 +27,7 @@ class Home extends React.Component {
       method: 'get',
     }
     const rest = await axios(config);
+    console.log(rest.data);
     this.setState({ allNFT: rest.data })
   }
 

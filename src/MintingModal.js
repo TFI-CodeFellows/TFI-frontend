@@ -9,6 +9,17 @@ import { BsFillCloudUploadFill } from "react-icons/bs";
 
 class MintingModal extends React.Component {
 
+  handleGetAllNft = async () => {
+    const config = {
+      baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
+      method: 'get',
+    }
+    const rest = await axios(config);
+    console.log(rest.data);
+    this.setState({ allNFT: rest.data })
+  }
+
+
   handleSubmit = e => {
     e.preventDefault();
     const bodyFormData = new FormData();
@@ -34,6 +45,7 @@ class MintingModal extends React.Component {
         data: FormData,
       }
       const rest = await axios(config, FormData);
+      this.handleGetAllNft();
       console.log(rest.data);
     }
   }

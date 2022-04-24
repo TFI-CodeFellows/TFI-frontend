@@ -30,3 +30,23 @@
     background-color: rgb(200, 195, 195);
     border: 1px solid rgb(200, 195, 195);
 }
+
+.modalBody {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    border: none !important;
+}
+
+#modalImg {
+    width: 200px;
+    height: 200px;
+}
+
+
+.modalBody,
+.modalHeader,
+.modalFooter {
+    border: none !important;
+}
