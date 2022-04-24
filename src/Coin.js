@@ -1,5 +1,7 @@
 import React from "react";
 import './Crypto.css';
+import { IoIosAddCircle } from "react-icons/io";
+import Button from '@mui/material/Button';
 
 const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap }) => {
     return (
@@ -21,8 +23,7 @@ const Coin = ({ name, image, symbol, price, volume, priceChange, marketcap }) =>
                     <p className="coin-marketcap">
                         Mkt Cap: ${marketcap.toLocaleString()}
                     </p>
-
-
+                    <Button id="addToCryptoWatchList"><h2><IoIosAddCircle /></h2></Button>
                 </div>
             </div>
         </div>

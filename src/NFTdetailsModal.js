@@ -17,7 +17,7 @@ class NFTdetailsModal extends Component {
                 centered
             >
                 <Modal.Header closeButton className='modalHeader'>
-                    <Modal.Title>{this.props.nft.title}</Modal.Title>
+                    <Modal.Title id="modalTitle">{this.props.nft.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='modalBody'>
                     <div>
@@ -35,7 +35,7 @@ class NFTdetailsModal extends Component {
                         <p>Description:</p>
                         <p>{this.props.nft.description}</p>
                         <Button
-                            id="readingModalBtn"
+                            id="addModalBtn"
                             onClick={""}
                         >
                             Add to Watchlist
@@ -43,9 +43,9 @@ class NFTdetailsModal extends Component {
                     </div>
                     <img id="modalImg" src={this.props.nft.imageURL} alt="" />
                 </Modal.Body>
-                <Modal.Footer id='modalFooter'>
+                <Modal.Footer className='modalFooter'>
                     <Button
-                        id="nftModalBtn"
+                        id="closeModalBtn"
                         onClick={this.props.onHide}>
                         Close
                     </Button>
