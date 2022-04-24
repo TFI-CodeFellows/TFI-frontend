@@ -4,11 +4,12 @@ import Image from 'react-bootstrap/Image';
 import Profile from './Profile';
 import { withAuth0 } from '@auth0/auth0-react';
 import LoginButton from './Login';
+import './Header.css';
 
 class Home extends React.Component {
   render() {
     return (
-      <Nav className="p-3 header-nav">
+      <Nav className="navBar">
         <Nav.Item>
           <Nav.Link to="/">
             <Image src="logo" alt="logo" />
@@ -28,7 +29,6 @@ class Home extends React.Component {
           </>
         ) : (
           <>
-            <Nav.Item>Search</Nav.Item>
             <Nav.Item>
               <Profile />
             </Nav.Item>

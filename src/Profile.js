@@ -1,10 +1,20 @@
 import React from 'react';
+import './Profile.css'
 import LogoutButton from './Logout';
 import { withAuth0 } from '@auth0/auth0-react';
 import Drawer from '@mui/material/Drawer';
 import Image from 'react-bootstrap/Image';
 import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
+import { IoMdMenu } from "react-icons/io";
+import { Card } from 'react-bootstrap';
+import { MdGeneratingTokens } from "react-icons/md";
+import { SiBitcoinsv } from "react-icons/si";
+import { IoIosHome } from "react-icons/io";
+import { SiEthereum } from "react-icons/si";
+
+
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -15,7 +25,7 @@ class Profile extends React.Component {
     }
   }
   hideModal = () => {
-    this.setState({modal: false})
+    this.setState({ modal: false })
   }
 
   render() {
@@ -26,7 +36,7 @@ class Profile extends React.Component {
       this.setState({ drawer: false })
     }
     const showModal = () => {
-      this.setState({modal: true, drawer: false})
+      this.setState({ modal: true, drawer: false })
     }
     const {
       isLoading,
@@ -39,21 +49,34 @@ class Profile extends React.Component {
     return (
       isAuthenticated && (
         <>
-          <Image src={user.picture} alt={user.name} onClick={() => this.state.drawer ? hideForm() : showForm()} />
+          <Button id="menu"><IoMdMenu onClick={() => this.state.drawer ? hideForm() : showForm()} /></Button>
           <Drawer
+            className='drawer'
             anchor='right'
             open={this.state.drawer}
             onClose={hideForm}>
-            <Button onClick={showModal}>MintNFT</Button>
-            <Button href="/">Home</Button>
-            <Button href="/">Crypto Watch List</Button>
-            <Button href="/nft">My NFTs</Button>
-            <Image className='profileImage'src={user.picture} alt={user.name} />
+            <Button id="minNftBtn" variant="contained" onClick={showModal}>Mint NFT</Button>
+            <Button href="/"><h5><IoIosHome /> &nbsp; Home</h5></Button>
+            <Button href="/crypto"><h5><SiBitcoinsv />  &nbsp; Crypto Watchlist</h5></Button>
+            <Button href="/nft"><h5><MdGeneratingTokens />  &nbsp; My NFTs</h5></Button>
+            <Image id='profileImage' src={user.picture} alt={user.name} />
             <h2>{user.name}</h2>
-            <p>{user.email}</p>
-            <LogoutButton />
+
+            <div>
+              <Card id="wallet">
+                <h3 id="ether"><SiEthereum /></h3>
+                <div>
+                  <h5>xxx-xxx-xxxx</h5>
+                  <p>{user.email}</p>
+                </div>
+              </Card>
+              <div id="bottomBtns">
+                <Button id="connectWallet" variant="outlined">Connect Wallet</Button>
+                <LogoutButton />
+              </div>
+            </div>
           </Drawer>
-          <MintingModal modal={this.state.modal} hideModal={this.hideModal}/>
+          <MintingModal modal={this.state.modal} hideModal={this.hideModal} />
         </>
       )
     );

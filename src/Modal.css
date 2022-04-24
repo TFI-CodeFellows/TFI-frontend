@@ -1,0 +1,32 @@
+.nftForm {
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.modal-content {
+    background-color: rgb(72, 70, 70) !important;
+}
+
+
+#minNftBtn {
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%) !important;
+    margin: 1rem 0;
+    width: 10rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    height: 48;
+    padding: 0 30px;
+}
+
+#input {
+    background-color: rgb(200, 195, 195);
+    border: 1px solid rgb(200, 195, 195);
+}

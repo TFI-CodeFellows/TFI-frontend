@@ -1,7 +1,11 @@
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
+import Button from '@mui/material/Button';
+import './Modal.css';
 import React from "react";
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
+import { BsFillCloudUploadFill } from "react-icons/bs";
+
 
 class MintingModal extends React.Component {
 
@@ -35,12 +39,12 @@ class MintingModal extends React.Component {
   }
   render() {
     return (
-      <Modal show={this.props.modal}>
-        <Form onSubmit={this.handleSubmit} encType='multipart/form-data'>
+      <Modal className="mintingNftModal" show={this.props.modal}>
+        <Form className="nftForm" onSubmit={this.handleSubmit} encType='multipart/form-data'>
           <Form.Label>Title:</Form.Label>
-          <Form.Control type='text' name='title' placeholder='Title' className='title' />
+          <Form.Control id="input" type='text' name='title' placeholder='Title' className='title' />
           <Form.Label>Category:</Form.Label>
-          <Form.Control as='select' name='type' placeholder='Category' className='Category FormSelect'>
+          <Form.Control id="input" as='select' name='type' placeholder='Category' className='Category FormSelect'>
             <option value='Category' >Select a category</option>
             <option value='Animal'>Animal</option>
             <option value='Art'>Art</option>
@@ -48,14 +52,14 @@ class MintingModal extends React.Component {
             <option value='Landscape'>Landscape</option>
           </Form.Control>
           <Form.Label>Price:</Form.Label>
-          <Form.Control type='number' placeholder='Enter Value' name='price' />
+          <Form.Control id="input" type='number' placeholder='Enter Value' name='price' />
           <Form.Label>Ratings:</Form.Label>
-          <Form.Control type='number' placeholder='Rate this NFT' name='rating' />
+          <Form.Control id="input" type='number' placeholder='Rate this NFT' name='rating' />
           <Form.Label>Description:</Form.Label>
-          <Form.Control type='text' as='textarea' placeholder='Enter a Description' name='description' />
-          <Form.Label>Upload Image:</Form.Label>
-          <Form.Control type='file' placeholder='Insert an Image' name='image' />
-          <Button type='submit' onClick={() => this.props.hideModal()}>MINT NFT</Button>
+          <Form.Control id="input" type='text' as='textarea' placeholder='Enter a Description' name='description' />
+          <Form.Label><BsFillCloudUploadFill />&nbsp; Upload Image:</Form.Label>
+          <Form.Control id="input" type='file' placeholder='Insert an Image' name='image' />
+          <Button id="minNftBtn" variant="contained" type='submit' onClick={() => this.props.hideModal()}>MINT NFT</Button>
         </Form>
       </Modal>
     )
