@@ -5,9 +5,10 @@ import { Row, Col, Card } from 'react-bootstrap';
 import Button from '@mui/material/Button'
 import { IoMdTrash } from 'react-icons/io';
 import { MdModeEditOutline } from 'react-icons/md';
-import './Nftcard.css'
+import './Nftcard.css';
 
 type NFT = {
+  _id: string,
   title: string,
   type: string,
   imageURL: string,
@@ -38,7 +39,11 @@ class Nft extends React.Component<IProps, IState> {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getUserNFTs();
+  }
+
+  getUserNFTs = async () => {
     const url = `${process.env.REACT_APP_HEROKU_URL}/nft`
     const response: { data: NFT[] } = await this.APICall(Method.GET, url)
     if (response?.data) {
@@ -48,7 +53,23 @@ class Nft extends React.Component<IProps, IState> {
     }
   }
 
+  handleDelete = async (nft: NFT) => {
+    console.log(nft);
+    const url = `${process.env.REACT_APP_HEROKU_URL}/nft/${nft._id}`
+    await this.APICall(Method.DELETE, url)
+      .then(() => {
+        this.getUserNFTs();
+      })
+  }
+
+  handleUpdate = async (nft: NFT) => {
+    console.log(nft);
+    this.getUserNFTs();
+  }
+
   render() {
+
+
     return (
       <div className="myNFTDiv">
         <h1>My NFTs</h1>
@@ -80,10 +101,19 @@ class Nft extends React.Component<IProps, IState> {
                     </div>
                   </div>
                   <div id="cardBtns">
-                    <Button id="dltBtn" variant="contained" disableElevation>
+                    <Button
+                      id="dltBtn"
+                      variant="contained"
+                      disableElevation
+                      onClick={() => this.handleDelete(nft)}
+                    >
                       <IoMdTrash /> &nbsp; Delete
                     </Button>
-                    <Button id="edtBtn" variant="outlined" >
+                    <Button
+                      id="edtBtn"
+                      variant="outlined"
+                      onClick={() => this.handleUpdate(nft)}
+                    >
                       <MdModeEditOutline />
                       &nbsp; Edit
                     </Button>

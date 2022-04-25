@@ -4,8 +4,10 @@ import Button from '@mui/material/Button';
 import './Header.css'
 
 const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-  return <Button id="loginBtn" variant="contained" onClick={() => loginWithRedirect()}>Log In</Button>;
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+  if (!isAuthenticated)
+    return <Button Button id="loginBtn" variant="contained" onClick={() => loginWithRedirect()}> Log In</Button >;
 };
 
 export default LoginButton;
