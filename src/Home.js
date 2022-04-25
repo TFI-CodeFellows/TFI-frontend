@@ -14,7 +14,7 @@ class Home extends React.Component {
       dailyNftData: {},
       search: "",
       coins: null,
-      watchList: []
+      coinWatchList: null
     };
   }
 
@@ -27,16 +27,33 @@ class Home extends React.Component {
       baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
       method: 'get',
     }
-    const rest = await axios(config);
-    console.log(rest.data);
-    this.setState({ allNFT: rest.data })
+    const res = await axios(config);
+    console.log(res.data);
+    this.setState({ allNFT: res.data })
   }
 
-  addToWatchList = (coin) => {
-    console.log(coin)
-    this.setState({ watchList: [...this.state.watchList, coin] })
+  addToWatchList = async (coin) => {
+    this.setState({ coinWatchList: coin });
     console.log(this.state.watchList);
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      console.log("res", res);
+      const jwt = (res.__raw);
+      console.log("token: ", jwt);
+
+      const config = {
+        headers: { "Authorization": `Bearer ${jwt}` },
+        method: "post",
+        data: this.state.coinWatchList,
+        baseURL: `${process.env.REACT_APP_HEROKU_URL / crypto}`
+      }
+
+      const coinRes = await axios(config, this.state.coinWatchList)
+      console.log("Coins from DB", coinRes.data);
+    }
   }
+
+
 
   DailyNfts() {
     return (
