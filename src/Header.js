@@ -3,7 +3,6 @@ import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
 import Profile from './Profile';
 import { withAuth0 } from '@auth0/auth0-react';
-import LoginButton from './Login';
 import './Header.css';
 
 class Home extends React.Component {
@@ -19,21 +18,13 @@ class Home extends React.Component {
           <Nav.Link href="/about"><h4>About Us</h4></Nav.Link>
         </Nav.Item>
         <Nav.Item className="separator" />
-        {!this.props.auth0.isAuthenticated ? (
-          <>
-            <Nav.Item>
-              <Nav.Link>
-                <LoginButton />
-              </Nav.Link>
-            </Nav.Item>
-          </>
-        ) : (
+        {this.props.auth0.isAuthenticated &&
           <>
             <Nav.Item>
               <Profile />
             </Nav.Item>
           </>
-        )}
+        }
       </Nav>
     );
   }

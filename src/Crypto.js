@@ -24,7 +24,7 @@ class Crypto extends Component {
                                 symbol={coin.symbol}
                                 priceChange={coin.price_change_percentage_24h}
                                 marketcap={coin.market_cap}
-
+                                addToWatchList={this.props.addToWatchList}
                             />
                         )
                     })

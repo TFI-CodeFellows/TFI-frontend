@@ -1,0 +1,15 @@
+.watchLstCont {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: yellow;
+}
+
+.watchLstCont h1 {
+    text-align: center;
+    margin: 0;
+}

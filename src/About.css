@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Neonderthaw&family=PT+Sans:ital@1&display=swap");
 
-.aboutH1{
+.aboutH1 {
   text-align: center;
-  font-family:'EB Garamond', serif;
-  color:black
+  font-family: 'EB Garamond', serif;
+  color: black
 }
 
-.aboutDiv{
+.aboutDiv {
   text-align: center;
   margin: 0;
   align-content: center;
@@ -16,26 +16,27 @@
   justify-content: center;
   color: white;
 }
+
 #container {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
 
 }
 
-.aboutRow{
+.aboutRow {
   width: 1400px;
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   align-content: center;
   justify-content: center;
 }
 
-.aboutCard{
-  width:420px !important;
-  height:700px;
+.aboutCard {
+  width: 420px !important;
+  height: 700px;
   background-color: rgb(38, 37, 37);
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
@@ -45,25 +46,25 @@
   border-color: red;
 }
 
-.cardImg{
-width: 270px !important;
-height: 270px !important;
-border-radius: 50%;
-margin: 10px;
+.cardImg {
+  width: 270px !important;
+  height: 270px !important;
+  border-radius: 50%;
+  margin: 10px;
 }
 
-.cardSocial{
-  display:flex;
+.cardSocial {
+  display: flex;
   justify-content: center;
 
 }
 
-.cardSocial h2{
+.cardSocial h2 {
   margin: 5px 1rem;
   color: white;
 }
 
-.cardTextDiv{
+.cardTextDiv {
   overflow: scroll;
   height: 50%;
 }
