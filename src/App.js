@@ -37,12 +37,12 @@ class App extends React.Component {
               :
               <>
                 <Route path="/" element={<Home />} />
-                <Route path="about" element={<About />} />
                 <Route path="crypto" element={<Crypto />} />
                 <Route path="nft" element={<Nft />} />
                 <Route path="watchlist" element={<WatchList />} />
               </>
             }
+            <Route path="about" element={<About />} />
           </Routes>
         </BrowserRouter>
       </>
