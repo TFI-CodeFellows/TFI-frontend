@@ -8,7 +8,8 @@ class WatchList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            coinsWatchList: null
+            coinsWatchList: null,
+            coins: null
         }
     }
 
@@ -27,13 +28,21 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `get`,
-                baseURL: `http://localhost:3001/crypto`
+                baseURL: `${process.env.REACT_APP_URL}/crypto`
             }
-
-            const coinRes = await axios(config);
-            console.log(coinRes.data)
+            const coinRes = await axios(config)
             this.setState({ coinsWatchList: coinRes.data });
+            this.handleGetCryptos(coinRes.data);
         }
+    }
+
+    handleGetCryptos = async (coinRes) => {
+        await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+            .then(res => {
+                this.setState({ coins: res.data });
+                this.filterCoins(coinRes, res.data);
+            })
+            .catch(error => console.log(error.message));
     }
 
     handleDeleteCoin = async (coin) => {
@@ -56,6 +65,18 @@ class WatchList extends Component {
         }
     }
 
+    filterCoins = (coinRes, res) => {
+        const arr = [];
+        let a = {};
+        for (let coin of res) {
+            a = res.filter(val => {
+                return val.name === coin.name;
+            })
+        }
+        console.log(a);
+        console.log(arr);
+    }
+
     render() {
         const {
             isLoading
@@ -68,6 +89,7 @@ class WatchList extends Component {
                 </div>
             )
         }
+
 
         return (
             <div className="watchLstCont">

@@ -43,7 +43,7 @@ class Home extends React.Component {
       const config = {
         headers: { "Authorization": `Bearer ${jwt}` },
         method: "post",
-        baseURL: `http://localhost:3001/crypto`,
+        baseURL: `${process.env.REACT_APP_URL}/crypto`,
         data: coinData
       }
 
@@ -59,8 +59,8 @@ class Home extends React.Component {
     );
   }
 
-  handleGetCryptos() {
-    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+  handleGetCryptos = async () => {
+    await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .then(res => {
         this.setState({ coins: res.data });
         console.log(res.data);
