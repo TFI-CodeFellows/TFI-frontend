@@ -44,22 +44,20 @@ class Nft extends React.Component<IProps, IState> {
   }
 
   getUserNFTs = async () => {
-    const url = `${process.env.REACT_APP_HEROKU_URL}/nft`
-    const response: { data: NFT[] } = await this.APICall(Method.GET, url)
-    if (response?.data) {
+    const url = `/nft`
+    const response: NFT[] = await this.APICall(Method.GET, url);
+    console.log(response);
+    if (response) {
       this.setState({
-        nfts: response.data,
+        nfts: response,
       })
     }
   }
 
-  handleDelete = async (nft: NFT) => {
-    console.log(nft);
-    const url = `${process.env.REACT_APP_HEROKU_URL}/nft/${nft._id}`
-    await this.APICall(Method.DELETE, url)
-      .then(() => {
-        this.getUserNFTs();
-      })
+  handleDeleteNft = async (nft: NFT) => {
+    const url = `/nft/${nft._id}`
+    await this.APICall(Method.DELETE, url);
+    this.getUserNFTs();
   }
 
   handleUpdate = async (nft: NFT) => {
@@ -73,7 +71,7 @@ class Nft extends React.Component<IProps, IState> {
     return (
       <div className="myNFTDiv">
         <h1>My NFTs</h1>
-        <Row xs={1} sm={2} md={3} lg={3} xl={4} className='resRow'>
+        <Row xs={1} sm={2} md={2} lg={3} xl={4} className='resRow'>
           {this.state.nfts.map((nft, idx) => {
             return (
               <Col key={idx}>
@@ -105,7 +103,7 @@ class Nft extends React.Component<IProps, IState> {
                       id="dltBtn"
                       variant="contained"
                       disableElevation
-                      onClick={() => this.handleDelete(nft)}
+                      onClick={() => this.handleDeleteNft(nft)}
                     >
                       <IoMdTrash /> &nbsp; Delete
                     </Button>
