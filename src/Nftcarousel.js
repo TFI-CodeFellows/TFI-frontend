@@ -40,7 +40,7 @@ class NFTCarousel extends Component {
           {this.props?.nftArr &&
             <Carousel className='nftCarousel' breakPoints={breakpoints}>
               {this.props?.nftArr.map((nft) => (
-                <Card key={nft._id} className='myNftCard'>
+                <Card key={nft._id} className='nftCard'>
                   <Card.Img
                     className='nftImgC'
                     src={nft.imageURL}

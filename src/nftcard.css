@@ -13,18 +13,23 @@ body {
 }
 
 .myNftCard {
-  margin: 1rem;
+  width: 300px;
+  height: 400px;
+  margin: 5rem;
   border-radius: 3%;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   background-color: rgb(54, 52, 52);
   color: rgb(144, 202, 249);
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
 
 .nftImg {
-  width: 300px;
+  width: 97%;
   height: 300px;
   border-radius: 3%;
-  margin: 5px;
+  margin: 5px 0;
   filter: hue-rotate(90deg);
 }
 
