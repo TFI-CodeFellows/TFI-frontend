@@ -27,8 +27,7 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `get`,
-                baseURL: `${process.env.REACT_APP_URL}`,
-                url: `/crypto`
+                baseURL: `http://localhost:3001/crypto`
             }
 
             const coinRes = await axios(config);
@@ -54,7 +53,6 @@ class WatchList extends Component {
             const coinRes = await axios(config);
             console.log("Books from DB: ", coinRes.data);
             this.getCoinsWatchList();
-
         }
     }
 

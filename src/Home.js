@@ -33,8 +33,7 @@ class Home extends React.Component {
   }
 
   addToWatchList = async (coin) => {
-    this.setState({ coinWatchList: coin });
-    console.log(this.state.watchList);
+    const coinData = { name: coin }
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       console.log("res", res);
@@ -44,12 +43,11 @@ class Home extends React.Component {
       const config = {
         headers: { "Authorization": `Bearer ${jwt}` },
         method: "post",
-        data: this.state.coinWatchList,
-        baseURL: `${process.env.REACT_APP_HEROKU_URL / crypto}`
+        baseURL: `http://localhost:3001/crypto`,
+        data: coinData
       }
 
-      const coinRes = await axios(config, this.state.coinWatchList)
-      console.log("Coins from DB", coinRes.data);
+      await axios(config)
     }
   }
 
