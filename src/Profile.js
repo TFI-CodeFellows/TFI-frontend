@@ -12,6 +12,7 @@ import { MdGeneratingTokens } from "react-icons/md";
 import { SiBitcoinsv } from "react-icons/si";
 import { IoIosHome } from "react-icons/io";
 import { SiEthereum } from "react-icons/si";
+import EditDev from './EditDev'
 
 
 
@@ -22,10 +23,11 @@ class Profile extends React.Component {
     this.state = {
       drawer: false,
       modal: false,
+      modalDev: false,
     }
   }
   hideModal = () => {
-    this.setState({ modal: false })
+    this.setState({ modal: false, modalDev: false })
   }
 
   render() {
@@ -37,6 +39,9 @@ class Profile extends React.Component {
     }
     const showModal = () => {
       this.setState({ modal: true, drawer: false })
+    }
+    const showDevModal = () => {
+      this.setState({modalDev: true, drawer: false})
     }
     const {
       isLoading,
@@ -59,7 +64,7 @@ class Profile extends React.Component {
           <Button href="/nft"><h5><MdGeneratingTokens />  &nbsp; My NFTs</h5></Button>
           <Image id='profileImage' src={user.picture} alt={user.name} />
           <h2>{user.name}</h2>
-
+          <Button id='devBtn' variant="contained" onClick={showDevModal}>Edit Dev</Button>
           <div>
             <Card id="wallet">
               <div>
@@ -78,6 +83,7 @@ class Profile extends React.Component {
           </div>
         </Drawer>
         <MintingModal modal={this.state.modal} hideModal={this.hideModal} />
+        <EditDev modalDev={this.state.modalDev} hideModal={this.hideModal}/>
       </>
     );
   }
