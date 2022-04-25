@@ -155,3 +155,21 @@
             #7918f2 60%,
             #4801ff 100%);
 }
+
+@media (max-width: 600px) {
+    #addToCryptoWatchList {
+        width: 98%;
+        margin: 5px;
+        border-radius: 10%;
+    }
+
+    #addToCryptoWatchList:hover {
+        border-radius: 2%;
+        margin: 5px 0;
+        background: linear-gradient(-225deg,
+                #ac32e3 10%,
+                #7918f2 60%,
+                #4801ff 100%);
+    }
+
+}

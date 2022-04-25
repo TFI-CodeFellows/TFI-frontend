@@ -76,21 +76,22 @@ class Home extends React.Component {
               id="searchBar"
               onChange={(value) => { this.setState({ search: value }) }}
             />
+            <div id="homeComponents">
+              {this.state.allNFT &&
+                <NftCarousel nftArr={this.state.allNFT} />}
 
-            {this.state.allNFT &&
-              <NftCarousel nftArr={this.state.allNFT} />}
+              {this.state.allNFT &&
+                <NftCarousel nftArr={this.state.allNFT} />}
 
-            {this.state.allNFT &&
-              <NftCarousel nftArr={this.state.allNFT} />}
+              {this.state.allNFT &&
+                <NftCarousel nftArr={this.state.allNFT} />}
 
-            {this.state.allNFT &&
-              <NftCarousel nftArr={this.state.allNFT} />}
-
-            <Crypto
-              coins={this.state.coins}
-              search={this.state.search}
-              addToWatchList={this.addToWatchList}
-            />
+              <Crypto
+                coins={this.state.coins}
+                search={this.state.search}
+                addToWatchList={this.addToWatchList}
+              />
+            </div>
           </>}
       </div>
     );
