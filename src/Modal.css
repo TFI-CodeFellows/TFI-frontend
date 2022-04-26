@@ -44,8 +44,25 @@
     padding: 0.5rem 1.25rem !important;
 }
 
-#canvas {
+.canvas-brush {
     cursor: url('./brush.png'), auto;
+}
+
+.canvas-eraser {
+    cursor: url('./pencil.png'), auto;
+}
+
+.separator {
+    flex-grow: 1;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.canvas-dimmer {
+    height: 100%;
 }
 
 #red-ink {

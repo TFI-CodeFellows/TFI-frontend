@@ -7,12 +7,11 @@ import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { ReactSketchCanvas } from 'react-sketch-canvas';
-import { Undo, Redo, Delete, Brush } from "@mui/icons-material";
+import { Undo, Redo, Delete, Brush, UploadFile, Edit, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 
 const CANVAS_STYLE = {
   border: '0.0625rem solid #9c9c9c',
   borderRadius: '0.25rem',
-  // marginTop: '2rem',
 };
 
 class MintingModal extends React.Component {
@@ -21,19 +20,60 @@ class MintingModal extends React.Component {
     this.canvas = React.createRef();
     this.state = {
       sketching: true,
-      sketchingColor: '#1f1f1f'
+      sketchingColor: '#1f1f1f',
+      sketchingEraseMode: false,
+      sketchingImg: null,
     }
   }
 
   undoCanvas = () => {
+    if(this.state.sketchingImg) {
+      return // not after submission
+    }
     this.canvas.current.undo()
   }
+
   redoCanvas = () => {
+    if(this.state.sketchingImg) {
+      return // not after submission
+    }
     this.canvas.current.redo()
   }
+
   setColorCanvas = newHex => {
+    if(this.state.sketchingImg) {
+      return // not after submission
+    }
     this.setState({
-      sketchingColor: newHex
+      sketchingColor: newHex,
+      sketchingEraseMode: false,
+    })
+    this.canvas.current.eraseMode(false)
+  }
+
+  toggleEraseCanvas = () => {
+    if(this.state.sketchingImg) {
+      return // not after submission
+    }
+    this.setState({
+      sketchingEraseMode: !this.state.sketchingEraseMode,
+    })
+    this.canvas.current.eraseMode(!this.state.sketchingEraseMode)
+  }
+  
+  finalizeImageCanvas = async () => {
+    if(this.state.sketchingImg) {
+      return // ESPECIALLY not after submission
+    }
+    const base64 = await this.canvas.current.exportImage('png')
+    fetch(base64)
+      .then(res => res.blob())
+      .then(blob => this.setState({sketchingImg: blob}))
+  }
+
+  reviseCanvas = () => {
+    this.setState({
+      sketchingImg: null,
     })
   }
 
@@ -45,7 +85,7 @@ class MintingModal extends React.Component {
     bodyFormData.append('price', e.target.price.value);
     bodyFormData.append('ratings', e.target.rating.value);
     bodyFormData.append('type', e.target.type.value)
-    bodyFormData.append('image', e.target.image.files[0]);
+    bodyFormData.append('image', this.state.sketchingImg || e.target.image.files[0]);
     this.createNFT(bodyFormData);
   }
   createNFT = async (FormData) => {
@@ -93,7 +133,7 @@ class MintingModal extends React.Component {
                 <Form.Label>Description:</Form.Label>
                 <Form.Control id="input" type='text' as='textarea' placeholder='Enter a Description' name='description' />
                 <Form.Label><BsFillCloudUploadFill />&nbsp; Upload Image:</Form.Label>
-                <Form.Control id="input" type='file' placeholder='Insert an Image' name='image' />
+                <Form.Control className={this.state.sketchingImg && 'disabled'} disabled={this.state.sketchingImg} id="input" type='file' placeholder='Insert an Image' name='image' />
                 <Button id="minNftBtn" variant="contained" type='submit' onClick={() => this.props.hideModal()}>MINT NFT</Button>
               </Form>
             </Col>
@@ -103,69 +143,101 @@ class MintingModal extends React.Component {
                   <div className="options-panel">
                     <div className="flex-row">
                       <div className="flex-col">
-                        <IconButton variant="contained" onClick={this.undoCanvas}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" onClick={this.undoCanvas}>
                           <Undo />
                         </IconButton>
                       </div>
                       <div className="flex-col">
-                        <IconButton variant="contained" onClick={this.redoCanvas}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" onClick={this.redoCanvas}>
                           <Redo/>
                         </IconButton>
                       </div>
                     </div>
                     <div className="flex-row">
                       <div className="flex-col">
-                        <Button variant="outlined" className="icon-button" startIcon={<Delete />}>Erase</Button>
+                        <Button
+                          variant="outlined"
+                          className={`icon-button ${this.state.sketchingImg && 'disabled'}`}
+                          startIcon={<Delete />}
+                          onClick={this.toggleEraseCanvas}>Erase</Button>
                       </div>
                     </div>
                     <div className="flex-row">
                       <div className="flex-col">
-                        <IconButton variant="contained" id="red-ink" onClick={() => this.setColorCanvas('#e2503d')}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="red-ink" onClick={() => this.setColorCanvas('#e2503d')}>
                           <Brush />
                         </IconButton>
                       </div>
                       <div className="flex-col">
-                        <IconButton variant="contained" id="pink-ink" onClick={() => this.setColorCanvas('#ca5db9')}>
-                          <Brush />
-                        </IconButton>
-                      </div>
-                    </div>
-                    <div className="flex-row">
-                      <div className="flex-col">
-                        <IconButton variant="contained" id="blue-ink" onClick={() => this.setColorCanvas('#256cde')}>
-                          <Brush />
-                        </IconButton>
-                      </div>
-                      <div className="flex-col">
-                        <IconButton variant="contained" id="yellow-ink" onClick={() => this.setColorCanvas('#f1f366')}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="pink-ink" onClick={() => this.setColorCanvas('#ca5db9')}>
                           <Brush />
                         </IconButton>
                       </div>
                     </div>
                     <div className="flex-row">
                       <div className="flex-col">
-                        <IconButton variant="contained" id="green-ink" onClick={() => this.setColorCanvas('#82f366')}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="blue-ink" onClick={() => this.setColorCanvas('#256cde')}>
                           <Brush />
                         </IconButton>
                       </div>
                       <div className="flex-col">
-                        <IconButton variant="contained" id="black-ink" onClick={() => this.setColorCanvas('#1f1f1f')}>
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="yellow-ink" onClick={() => this.setColorCanvas('#f1f366')}>
                           <Brush />
                         </IconButton>
                       </div>
                     </div>
+                    <div className="flex-row">
+                      <div className="flex-col">
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="green-ink" onClick={() => this.setColorCanvas('#82f366')}>
+                          <Brush />
+                        </IconButton>
+                      </div>
+                      <div className="flex-col">
+                        <IconButton className={this.state.sketchingImg && 'disabled'} variant="contained" id="black-ink" onClick={() => this.setColorCanvas('#1f1f1f')}>
+                          <Brush />
+                        </IconButton>
+                      </div>
+                    </div>
+                    <div className="flex-row separator"/>
+                    <div className="flex-row">
+                      <div className="flex-col">
+                        <Button
+                          variant="outlined"
+                          className={`icon-button ${this.state.sketchingImg && 'disabled'}`}
+                          startIcon={<UploadFile />}
+                          onClick={this.finalizeImageCanvas}>Finalize</Button>
+                      </div>
+                    </div>
+                    {!!this.state.sketchingImg && (
+                      <div className="flex-row">
+                        <div className="flex-col">
+                          <Button
+                            className="icon-button"
+                            variant="outlined"
+                            startIcon={<Edit />}
+                            onClick={this.reviseCanvas}>Revise</Button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </Col>
                 <Col>
-                  <ReactSketchCanvas
-                    id="canvas"
-                    ref={this.canvas}
-                    style={CANVAS_STYLE}
-                    strokeWidth={4}
-                    strokeColor={this.state.sketchingColor} />
+                  <div height="100%" className={`canvas-dimmer ${this.state.sketchingImg && 'disabled'}`}>
+                    <ReactSketchCanvas
+                      className={!this.state.sketchingImg && this.state.sketchingEraseMode ? 'canvas-eraser' : 'canvas-brush'}
+                      ref={this.canvas}
+                      style={CANVAS_STYLE}
+                      strokeWidth={4}
+                      strokeColor={this.state.sketchingColor} />
+                  </div>
                 </Col>
               </>
             )}
+            <Col md="auto">
+              <IconButton className={this.state.sketchingImg && 'disabled'} id="black-ink" onClick={() => this.setColorCanvas('#1f1f1f')}>
+                {this.state.sketching ? <ArrowBackIos /> : <ArrowForwardIos />}
+              </IconButton>
+            </Col>
           </Row>
         </Container>
       </Modal>
