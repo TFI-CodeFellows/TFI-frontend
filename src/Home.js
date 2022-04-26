@@ -32,8 +32,7 @@ class Home extends React.Component {
       const config = {
         headers: { "Authorization": `Bearer ${jwt}` },
         method: "post",
-        baseURL: `http://localhost:3001`,
-        url: "/crypto",
+        baseURL: `${process.env.REACT_APP_HEROKU_URL}/crypto`,
         data: coinData
       }
 

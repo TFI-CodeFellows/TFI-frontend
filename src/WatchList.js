@@ -32,8 +32,7 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `get`,
-                baseURL: `http://localhost:3001`,
-                url: '/crypto'
+                baseURL: `${process.env.REACT_APP_HEROKU_URL}/crypto`
             }
             const coinRes = await axios(config)
             this.setState({ myCoins: coinRes.data })
