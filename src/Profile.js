@@ -13,9 +13,8 @@ import { SiBitcoinsv } from "react-icons/si";
 import { IoIosHome } from "react-icons/io";
 import { SiEthereum } from "react-icons/si";
 import EditDev from './EditDev'
-
-
-
+import { FaEdit } from "react-icons/fa";
+import axios from 'axios';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -24,12 +23,30 @@ class Profile extends React.Component {
       drawer: false,
       modal: false,
       modalDev: false,
+      userDev: null,
+    }
+  }
+  componentDidMount() {
+    this.handleGetUserDev();
+    console.log(this.props.withAuth0);
+  }
+  handleGetUserDev = async (coin) => {
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = (res.__raw);
+
+      const config = {
+        headers: { "Authorization": `Bearer ${jwt}` },
+        method: "get",
+        baseURL: `${process.env.REACT_APP_HEROKU_URL}/userDev`
+      }
+      const rest = await axios(config);
+      this.setState({userDev: rest.data[0]});
     }
   }
   hideModal = () => {
     this.setState({ modal: false, modalDev: false })
   }
-
   render() {
     const showForm = () => {
       this.setState({ drawer: true })
@@ -63,8 +80,7 @@ class Profile extends React.Component {
           <Button href="/watchlist"><h5><SiBitcoinsv />  &nbsp; My Watchlist</h5></Button>
           <Button href="/nft"><h5><MdGeneratingTokens />  &nbsp; My NFTs</h5></Button>
           <Image id='profileImage' src={user.picture} alt={user.name} />
-          <h2>{user.name}</h2>
-          <Button id='devBtn' variant="contained" onClick={showDevModal}>Edit Dev</Button>
+          <h2>{user.name} &nbsp; <FaEdit id='editProfile' onClick={showDevModal}/></h2>
           <div>
             <Card id="wallet">
               <div>
@@ -83,7 +99,7 @@ class Profile extends React.Component {
           </div>
         </Drawer>
         <MintingModal modal={this.state.modal} hideModal={this.hideModal} />
-        <EditDev modalDev={this.state.modalDev} hideModal={this.hideModal}/>
+        {this.state.userDev && <EditDev userDev={this.state.userDev} modalDev={this.state.modalDev} hideModal={this.hideModal}/> }
       </>
     );
   }

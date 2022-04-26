@@ -7,7 +7,7 @@
 
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
     background-color: rgb(54, 52, 52) !important;
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -102,4 +102,7 @@
 
 #etherImg {
     width: 60%;
+}
+#editProfile:hover {
+    cursor:grab
 }
