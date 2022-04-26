@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
 import { IoMdMenu } from 'react-icons/io';
 import { Card } from 'react-bootstrap';
+import { BsFillBagFill } from "react-icons/bs";
 import { MdGeneratingTokens } from 'react-icons/md';
 import { SiBitcoinsv } from 'react-icons/si';
 import { IoIosHome } from 'react-icons/io';
@@ -65,11 +66,18 @@ class Profile extends React.Component {
     }
     return (
       <>
-        <Button id="menu">
-          <IoMdMenu
-            onClick={() => (this.state.drawer ? hideForm() : showForm())}
-          />
-        </Button>
+        <div id="menuDiv">
+          <Button id="menuCart">
+            <BsFillBagFill
+              onClick={() => (this.state.drawer ? hideForm() : showForm())}
+            />
+          </Button>
+          <Button id="menu">
+            <IoMdMenu
+              onClick={() => (this.state.drawer ? hideForm() : showForm())}
+            />
+          </Button>
+        </div>
         <Drawer
           className="drawer"
           anchor="right"
@@ -95,10 +103,10 @@ class Profile extends React.Component {
             </h5>
           </Button>
           <Image id="profileImage" src={user.picture} alt={user.name} />
-          <h2>
+          <h3>
             {user.name} &nbsp;{' '}
             <FaEdit id="editProfile" onClick={showDevModal} />
-          </h2>
+          </h3>
           <div>
             <Card id="wallet">
               <div>

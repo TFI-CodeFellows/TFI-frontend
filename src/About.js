@@ -34,50 +34,52 @@ class About extends React.Component {
     return (
       <div className="aboutDiv">
         <>
-          <h1 className="aboutH1">ABOUT US</h1>
-          <Row xs={1} sm={2} md={3} lg={3} xl={3} className="aboutRow">
+          <h1 className="aboutH1">Project M3rcado Team</h1>
+          <Row xs={1} sm={2} md={2} lg={2} xl={2} className="aboutRow">
             {this.state.devs?.map((dev) => (
-              <Col key={dev._id}>
-                <Card className="aboutCard" key={dev._id}>
-                  <Card.Img
-                    className="cardImg"
-                    variant="top"
-                    src={dev.imageURL}
-                  />
-                  <Card.Body>
-                    <Card.Title>{dev.name}</Card.Title>
+              <Col key={dev._id} id="aboutCol">
+                <div id="outerBorder">
+                  <Card className="aboutCard" key={dev._id}>
+                    <Card.Img
+                      className="cardImg"
+                      variant="top"
+                      src={dev.imageURL}
+                    />
+                    <Card.Body>
+                      <Card.Title>{dev.name}</Card.Title>
 
-                    <Card.Title>
-                      <h6>{dev.role}</h6>
-                    </Card.Title>
-                    <div className="cardSocial">
-                      <h2>
-                        <a href={dev.github}>
-                          <FaGithubSquare />
-                        </a>
-                      </h2>
-                      <h2>
-                        <a href={dev.linkedIn}>
-                          <FaLinkedin />
-                        </a>
-                      </h2>
-                    </div>
-                    <div className="cardTextDiv">
-                      <Card.Text className="cardText">
-                        <p>{dev.bio}</p>
+                      <Card.Title>
+                        <h6>{dev.role}</h6>
+                      </Card.Title>
+                      <div className="cardSocial">
+                        <h2>
+                          <a href={dev.github}>
+                            <FaGithubSquare />
+                          </a>
+                        </h2>
+                        <h2>
+                          <a href={dev.linkedIn}>
+                            <FaLinkedin />
+                          </a>
+                        </h2>
+                      </div>
+                      <div className="cardTextDiv">
+                        <Card.Text className="cardText">
+                          <p>{dev.bio}</p>
+                        </Card.Text>
+                      </div>
+                      <Card.Text
+                        id="read-more"
+                        onClick={() => {
+                          this.setBio(dev.bio);
+                          this.showBio();
+                        }}
+                      >
+                        Read More
                       </Card.Text>
-                    </div>
-                    <Card.Text
-                      id="read-more"
-                      onClick={() => {
-                        this.setBio(dev.bio);
-                        this.showBio();
-                      }}
-                    >
-                      Read More
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+                    </Card.Body>
+                  </Card>
+                </div>
               </Col>
             ))}
           </Row>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PriceModal from './PriceModal.js'
 import { APICall, Method } from './helpers';
 import { withAuth0 } from '@auth0/auth0-react';
 import { Row, Col, Card } from 'react-bootstrap';
@@ -61,7 +62,8 @@ class Nft extends React.Component<IProps, IState> {
   }
 
   handleUpdate = async (nft: NFT) => {
-    console.log(nft);
+    const url = `/nft/${nft._id}`
+    await this.APICall(Method.DELETE, url);
     this.getUserNFTs();
   }
 
@@ -113,7 +115,7 @@ class Nft extends React.Component<IProps, IState> {
                       onClick={() => this.handleUpdate(nft)}
                     >
                       <MdModeEditOutline />
-                      &nbsp; Edit
+                      &nbsp; Edit Price
                     </Button>
                   </div>
                 </Card>
@@ -121,9 +123,11 @@ class Nft extends React.Component<IProps, IState> {
             )
           })}
         </Row>
+        <PriceModal />
       </div >
     )
   }
 }
+
 
 export default withAuth0(Nft);
