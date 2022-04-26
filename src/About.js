@@ -5,6 +5,7 @@ import { Card, Row, Col } from 'react-bootstrap';
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 
 
+
 class About extends React.Component {
   constructor(props) {
     super(props);
