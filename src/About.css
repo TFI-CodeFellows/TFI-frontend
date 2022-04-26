@@ -42,8 +42,9 @@
   align-content: center;
   margin: 2rem;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  border: 3px solid;
   border-radius: 4%;
-  border-color: red;
+  border-color: rgba(170, 0, 255, 0.731);
 }
 
 .cardImg {
@@ -65,6 +66,10 @@
 }
 
 .cardTextDiv {
-  overflow: scroll;
-  height: 50%;
+  overflow: hidden;
+  height: 30%;
+}
+#read-more:hover{
+  color: blueviolet;
+  cursor: pointer;
 }
