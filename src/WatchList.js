@@ -2,36 +2,39 @@ import React, { Component } from 'react';
 import './WatchList.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import ReactLoading from 'react-loading';
+import { AiOutlineMinusCircle } from "react-icons/ai";
+import Button from '@mui/material/Button';
 import axios from 'axios';
 
 class WatchList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            coinsWatchList: null,
+            coinsWatchList: [],
             coins: null
         }
     }
 
 
     componentDidMount() {
+        this.handleGetCryptos()
         this.getCoinsWatchList();
     }
 
     getCoinsWatchList = async () => {
+        console.log("Getting watchlist");
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
             console.log("res", res);
             const jwt = res.__raw;
             console.log('token: ', jwt);
-
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `get`,
-                baseURL: `${process.env.REACT_APP_URL}/crypto`
+                baseURL: `http://localhost:3001`,
+                url: '/crypto'
             }
             const coinRes = await axios(config)
-            this.setState({ coinsWatchList: coinRes.data });
             this.handleGetCryptos(coinRes.data);
         }
     }
@@ -67,14 +70,14 @@ class WatchList extends Component {
 
     filterCoins = (coinRes, res) => {
         const arr = [];
-        let a = {};
-        for (let coin of res) {
-            a = res.filter(val => {
-                return val.name === coin.name;
-            })
+        if (coinRes) {
+            for (let coin of coinRes) {
+                arr.push(coin.name);
+            }
         }
-        console.log(a);
-        console.log(arr);
+        let crypto = res.filter(val => arr.includes(val.name));
+        console.log(crypto);
+        this.setState({ coinsWatchList: crypto });
     }
 
     render() {
@@ -93,7 +96,39 @@ class WatchList extends Component {
 
         return (
             <div className="watchLstCont">
-                <h1>My WatchList</h1>
+                <h1>My Crypto Watchlist</h1>
+                {this.state.coinsWatchList.length > 0 &&
+                    this.state.coinsWatchList.map((coin, idx) => {
+                        return (
+                            <div key={idx} className='coin-container' >
+                                <div className='coin-row'>
+                                    <div className='coin'>
+                                        <img src={coin.image} alt='crypto' />
+                                        <h1>{coin.name}</h1>
+                                        <p className="coin-symbol" >{coin.symbol}</p>
+                                    </div>
+                                    <div className="coin-data">
+                                        <p className="coin-price">${coin.current_price.toLocaleString()} </p>
+                                        <p className="coin-volume">${coin.total_volume.toLocaleString()}</p>
+                                        {coin.price_change_percentage_24h < 0 ? (
+                                            <p className="coin-percent red">{coin.price_change_percentage_24h.toFixed(2)}%</p>
+                                        ) : (
+                                            <p className="coin-percent green">{coin.price_change_percentage_24h.toFixed(2)}%</p>
+                                        )}
+                                        <p className="coin-marketcap">
+                                            Mkt Cap: ${coin.market_cap.toLocaleString()}
+                                        </p>
+                                        <Button
+                                            id="addToCryptoWatchList"
+                                            onClick={() => {
+                                                this.props.addToWatchList(coin.name)
+                                            }}
+                                        ><h2><AiOutlineMinusCircle /></h2>
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>)
+                    })}
             </div>
         )
     }

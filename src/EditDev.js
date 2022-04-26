@@ -35,6 +35,8 @@ class EditDev extends React.Component {
       linkedIn: this.state.linkedIn,
       imageURL: this.state.imageURL,
     };
+
+    console.log(this.state.imageURL);
     console.log(newProfileData);
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();

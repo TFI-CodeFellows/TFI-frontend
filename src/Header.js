@@ -21,7 +21,7 @@ class Home extends React.Component {
         {this.props.auth0.isAuthenticated &&
           <>
             <Nav.Item>
-              <Profile />
+              <Profile handleGetAllNft={this.props.handleGetAllNft} />
             </Nav.Item>
           </>
         }
