@@ -49,6 +49,7 @@
 .modalHeader,
 .modalFooter {
     border: none !important;
+    background-color: rgb(54, 52, 52);
 }
 
 .btn-close {
@@ -92,4 +93,25 @@
     justify-content: space-around;
     height: 150px;
     width: 70%;
+}
+
+#submitBtn {
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%) !important;
+    margin: 10px;
+    width: 10rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    height: 48;
+    padding: 0 30px;
+}
+
+#priceCloseBtn {
+    background-color: silver;
+    color: black;
+    border: 2px solid #7918f2;
 }
