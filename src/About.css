@@ -42,9 +42,18 @@ h1 {
   flex-direction: column;
   align-items: center;
   align-content: center;
-  justify-content: space-around;
+  justify-content: center;
   margin: 5px;
   border-radius: 3%;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: -1rem 0 0 0 !important;
+  padding: none !important;
+  height: 40% !important;
 }
 
 #aboutCol {
@@ -60,7 +69,7 @@ h1 {
   width: 270px !important;
   height: 270px !important;
   border-radius: 50%;
-  margin: 1rem 0;
+  margin: 2rem 0 0 0;
 }
 
 .cardSocial {
@@ -76,6 +85,7 @@ h1 {
 .cardTextDiv {
   overflow: hidden;
   height: 150px;
+
 }
 
 #read-more:hover {

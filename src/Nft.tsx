@@ -67,6 +67,14 @@ class Nft extends React.Component<IProps, IState> {
     this.getUserNFTs();
   }
 
+  resetNft = () => {
+    this.setState({ selected: null });
+  }
+
+  onHide = () => {
+    this.setState({ show: false });
+  }
+
   render() {
 
 
@@ -82,13 +90,6 @@ class Nft extends React.Component<IProps, IState> {
                     className='nftImg'
                     src={nft.imageURL}
                     alt={nft.title}
-                    onClick={() => {
-                      console.log('hello');
-                      this.setState({
-                        show: true,
-                        selected: nft,
-                      });
-                    }}
                   />
                   <div id="cardDiv">
                     <div>
@@ -112,7 +113,13 @@ class Nft extends React.Component<IProps, IState> {
                     <Button
                       id="edtBtn"
                       variant="outlined"
-                      onClick={() => this.handleUpdate(nft)}
+                      onClick={() => {
+                        console.log('hello');
+                        this.setState({
+                          show: true,
+                          selected: nft,
+                        });
+                      }}
                     >
                       <MdModeEditOutline />
                       &nbsp; Edit Price
@@ -123,7 +130,14 @@ class Nft extends React.Component<IProps, IState> {
             )
           })}
         </Row>
-        <PriceModal />
+        {this.state.selected &&
+          <PriceModal
+            show={this.state.show}
+            onHide={this.onHide}
+            nft={this.state.selected}
+            resetNft={this.resetNft}
+            getUserNFTs={this.getUserNFTs}
+          />}
       </div >
     )
   }
