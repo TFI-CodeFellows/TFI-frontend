@@ -6,7 +6,7 @@
     "checkJs": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": false, 
+    "strict": false,
     "alwaysStrict": true,
     "skipLibCheck": true,
     "jsx": "react"

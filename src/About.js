@@ -71,7 +71,7 @@ class About extends React.Component {
                       <Card.Text
                         id="read-more"
                         onClick={() => {
-                          this.setBio(dev.bio);
+                          this.setBio(dev);
                           this.showBio();
                         }}
                       >
@@ -84,11 +84,12 @@ class About extends React.Component {
             ))}
           </Row>
         </>
-        <ReadMore
-          devData={this.state.bio}
-          showModal={this.state.showModal}
-          hideBio={this.hideBio}
-        />
+        {this.state.bio &&
+          <ReadMore
+            devData={this.state.bio}
+            showModal={this.state.showModal}
+            hideBio={this.hideBio}
+          />}
       </div>
     );
   }

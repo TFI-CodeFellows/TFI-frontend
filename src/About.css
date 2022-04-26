@@ -103,6 +103,14 @@ h1 {
     justify-content: center !important;
   }
 
+  .aboutCard {
+    width: 400px;
+  }
+
+  .aboutRow {
+    width: 100%;
+  }
+
 }
 
 #outerBorder {
@@ -113,4 +121,10 @@ h1 {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   margin: 2rem;
   border-radius: 3%;
+}
+
+#readmoreHeader,
+#readmoreBody,
+#readmoreFooter {
+  border: none;
 }
