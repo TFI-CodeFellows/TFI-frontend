@@ -11,7 +11,8 @@ class WatchList extends Component {
         super(props);
         this.state = {
             coinsWatchList: [],
-            coins: null
+            coins: null,
+            myCoins: null
         }
     }
 
@@ -35,6 +36,7 @@ class WatchList extends Component {
                 url: '/crypto'
             }
             const coinRes = await axios(config)
+            this.setState({ myCoins: coinRes.data })
             this.handleGetCryptos(coinRes.data);
         }
     }
@@ -48,7 +50,11 @@ class WatchList extends Component {
             .catch(error => console.log(error.message));
     }
 
-    handleDeleteCoin = async (coin) => {
+    removeFromWatchlist = async (coinName) => {
+        const deleteCoin = this.state.myCoins.filter((coin) => coin.name === coinName);
+        const { _id, name } = deleteCoin[0];
+        console.log(_id);
+        console.log(name);
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
             console.log("res", res);
@@ -58,15 +64,16 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `delete`,
-                baseURL: `${process.env.REACT_APP_URL}`,
-                url: `/crypto/${coin._id}`
+                baseURL: `http://localhost:3001`,
+                url: `/crypto/${_id}`
             }
-
             const coinRes = await axios(config);
-            console.log("Books from DB: ", coinRes.data);
+            console.log("delete coin", coinRes.data);
+            this.handleGetCryptos()
             this.getCoinsWatchList();
         }
     }
+
 
     filterCoins = (coinRes, res) => {
         const arr = [];
@@ -121,7 +128,7 @@ class WatchList extends Component {
                                         <Button
                                             id="addToCryptoWatchList"
                                             onClick={() => {
-                                                this.props.addToWatchList(coin.name)
+                                                this.removeFromWatchlist(coin.name)
                                             }}
                                         ><h2><AiOutlineMinusCircle /></h2>
                                         </Button>

@@ -38,7 +38,7 @@ class NFTdetailsModal extends Component {
                             id="addModalBtn"
                             onClick={""}
                         >
-                            Add to Watchlist
+                            Add to Cart
                         </Button>
                     </div>
                     <img id="modalImg" src={this.props.nft.imageURL} alt="" />

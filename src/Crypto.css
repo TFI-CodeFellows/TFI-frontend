@@ -173,3 +173,41 @@
     }
 
 }
+
+
+@media (max-width: 600px) {
+
+
+    .coin-row {
+        flex-direction: column;
+        width: 80vw;
+        height: 100%;
+        align-items: center;
+        align-content: center;
+    }
+
+    .coin-data {
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+    }
+
+    .coin {
+        justify-content: center;
+        height: 30px;
+        align-items: center;
+        align-content: center;
+        margin: 10px auto;
+    }
+
+    .coin {
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    p {
+        text-align: center;
+        margin: 5px 0;
+    }
+}

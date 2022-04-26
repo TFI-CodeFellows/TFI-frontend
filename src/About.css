@@ -2,25 +2,27 @@
 
 .aboutH1 {
   text-align: center;
-  font-family: 'EB Garamond', serif;
-  color: black
 }
 
 .aboutDiv {
   text-align: center;
-  margin: 0;
+  margin: 10rem 0;
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  color: white;
+}
+
+h1 {
   color: white;
 }
 
 #container {
   display: flex;
   justify-content: space-between;
-
+  background-color: blue;
 }
 
 .aboutRow {
@@ -29,35 +31,41 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .aboutCard {
-  width: 420px !important;
+  width: 450px !important;
   height: 700px;
   background-color: rgb(38, 37, 37);
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
-  margin: 2rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  border: 3px solid;
-  border-radius: 4%;
-  border-color: rgba(170, 0, 255, 0.731);
+  justify-content: space-around;
+  margin: 5px;
+  border-radius: 3%;
 }
+
+#aboutCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+}
+
 
 .cardImg {
   width: 270px !important;
   height: 270px !important;
   border-radius: 50%;
-  margin: 10px;
+  margin: 1rem 0;
 }
 
 .cardSocial {
   display: flex;
   justify-content: center;
-
 }
 
 .cardSocial h2 {
@@ -67,9 +75,32 @@
 
 .cardTextDiv {
   overflow: hidden;
-  height: 30%;
+  height: 150px;
 }
-#read-more:hover{
+
+#read-more:hover {
   color: blueviolet;
   cursor: pointer;
+}
+
+@media (max-width:600px) {
+  .aboutRow {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center !important;
+  }
+
+}
+
+#outerBorder {
+  background: linear-gradient(-225deg,
+      #ac32e3 10%,
+      #7918f2 60%,
+      #4801ff 100%) !important;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  margin: 2rem;
+  border-radius: 3%;
 }

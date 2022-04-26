@@ -49,12 +49,12 @@ class NFTCarousel extends Component {
                   />
                   <div id="cardDiv">
                     <div>
-                      <h5 id="label">Title:</h5>
-                      <h5>&nbsp;{nft.title}</h5>
+                      <h6 id="label">Title:</h6>
+                      <h6>&nbsp;{nft.title}</h6>
                     </div>
                     <div>
-                      <h5 id="label">Price:</h5>
-                      <h5>&nbsp;{nft.price} ETH</h5>
+                      <h6 id="label">Price:</h6>
+                      <h6>&nbsp;{nft.price} ETH</h6>
                     </div>
                   </div>
                 </Card>

@@ -15,7 +15,7 @@ class Home extends React.Component {
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/about"><h4>About Us</h4></Nav.Link>
+          <Nav.Link id="aboutUsMenu" href="/about"><h4>About Us</h4></Nav.Link>
         </Nav.Item>
         <Nav.Item className="separator" />
         {this.props.auth0.isAuthenticated &&
