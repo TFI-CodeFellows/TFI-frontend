@@ -11,7 +11,6 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dailyNftData: {},
       search: "",
       coins: null,
       coinWatchList: null
@@ -19,17 +18,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetAllNft()
     this.handleGetCryptos();
-  }
-  handleGetAllNft = async () => {
-    const config = {
-      baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
-      method: 'get',
-    }
-    const res = await axios(config);
-    console.log(res.data);
-    this.setState({ allNFT: res.data })
   }
 
   addToWatchList = async (coin) => {
@@ -43,7 +32,8 @@ class Home extends React.Component {
       const config = {
         headers: { "Authorization": `Bearer ${jwt}` },
         method: "post",
-        baseURL: `${process.env.REACT_APP_URL}/crypto`,
+        baseURL: `http://localhost:3001`,
+        url: "/crypto",
         data: coinData
       }
 
@@ -92,14 +82,14 @@ class Home extends React.Component {
               onChange={(value) => { this.setState({ search: value }) }}
             />
             <div id="homeComponents">
-              {this.state.allNFT &&
-                <NftCarousel nftArr={this.state.allNFT} />}
+              {this.props.allNFT &&
+                <NftCarousel nftArr={this.props.allNFT} />}
 
-              {this.state.allNFT &&
-                <NftCarousel nftArr={this.state.allNFT} />}
+              {this.props.allNFT &&
+                <NftCarousel nftArr={this.props.allNFT} />}
 
-              {this.state.allNFT &&
-                <NftCarousel nftArr={this.state.allNFT} />}
+              {this.props.allNFT &&
+                <NftCarousel nftArr={this.props.allNFT} />}
 
               <Crypto
                 coins={this.state.coins}

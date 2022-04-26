@@ -11,8 +11,30 @@ import WatchList from './WatchList';
 import Welcome from './Welcome';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allNFT: null
+    }
+  }
+
+  componentDidMount() {
+    this.handleGetAllNft()
+  }
+
+  handleGetAllNft = async () => {
+    const config = {
+      baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
+      method: 'get',
+    }
+    const res = await axios(config);
+    console.log(res.data);
+    this.setState({ allNFT: res.data })
+  }
+
   render() {
 
     const {
@@ -29,14 +51,14 @@ class App extends React.Component {
 
     return (
       <>
-        <Header />
+        <Header handleGetAllNft={this.handleGetAllNft} />
         <BrowserRouter>
           <Routes>
             {!this.props.auth0.isAuthenticated ?
               <Route path="/" element={<Welcome />} />
               :
               <>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home allNFT={this.state.allNFT} />} />
                 <Route path="crypto" element={<Crypto />} />
                 <Route path="nft" element={<Nft />} />
                 <Route path="watchlist" element={<WatchList />} />
