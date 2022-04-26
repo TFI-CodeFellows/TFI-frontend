@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import './About.css';
+import Button from '@mui/material/Button';
 
 class ReadMore extends React.Component {
   render() {
@@ -13,6 +14,8 @@ class ReadMore extends React.Component {
           <Modal.Body id="readmoreBody">{this.props.devData.bio}</Modal.Body>
           <Modal.Footer id="readmoreFooter">
             <Button
+              id="readmoreBtn"
+              variant="contained"
               onClick={() => {
                 this.props.hideBio();
               }}

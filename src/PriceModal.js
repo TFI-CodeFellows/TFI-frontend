@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import './Modal.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
 
 
 class PriceModal extends React.Component {
@@ -57,23 +58,26 @@ class PriceModal extends React.Component {
                 aria-labelledby='contained-modal-title-vcenter'
                 centered
             >
-                <Modal.Header id="priceModalHeader">
-                    <Modal.Title>Update Price</Modal.Title>
-                </Modal.Header>
                 <Modal.Body id="priceModalBody">
                     <Form id="priceForm" type="submit" onSubmit={this.handlePriceSubmit}>
-                        <Form.Label>Enter Price:</Form.Label>
+                        <Form.Label><h4>Enter Price:</h4></Form.Label>
                         <Form.Control
                             id="input"
                             name="price"
                             type="text"
                             value={this.state.price}
                             onChange={this.handlePriceChange} />
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            id="submitBtn"
+                            type="submit"
+                            variant="contained"
+                        >Submit</Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer id="priceModalFooter">
-                    <Button onClick={this.props.onHide}>Close</Button>
+                    <Button
+                        id="priceCloseBtn"
+                        onClick={this.props.onHide}>Close</Button>
                 </Modal.Footer>
             </Modal>
         )
