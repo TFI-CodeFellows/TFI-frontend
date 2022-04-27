@@ -153,7 +153,7 @@
     #wallet {
         margin: 10px;
         width: 90%;
-        height: 220px;
+        height: 175px;
     }
 
     #cardInfo {
@@ -178,5 +178,10 @@
 
     .name {
         font-size: 14px;
+    }
+
+    #bottomBtns {
+        width: 95%;
+        margin: 5px;
     }
 }
