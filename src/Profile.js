@@ -137,7 +137,9 @@ class Profile extends React.Component {
           <Image id="profileImage" src={user.picture} alt={user.name} />
           <h3>
             {user.name} &nbsp;{' '}
-            <FaEdit id="editProfile" onClick={showDevModal} />
+            {this.state.userDev?.admin &&
+              <FaEdit id="editProfile" onClick={showDevModal} />
+            }
           </h3>
           <div>
             <Card id="wallet">

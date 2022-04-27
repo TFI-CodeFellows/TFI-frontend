@@ -28,28 +28,23 @@ class NFTdetailsModal extends Component {
                             size={24}
                             activeColor='#FFFF00'
                         />
-                        <p>Created by:</p>
-                        <p>Creator here</p>
-                        <p>Price:</p>
+                        <p><u>Created By</u> <br></br>
+                        <br></br>
+                        {this.props.nft.email}</p>
+                        <p><u>Price</u></p>
                         <p>{this.props.nft.price}  ETH</p>
-                        <p>Description:</p>
+                        <p><u>Description</u></p>
                         <p>{this.props.nft.description}</p>
                         <Button
                             id="addModalBtn"
-                            onClick={""}
+                            // onClick={}
                         >
                             Add to Cart
                         </Button>
                     </div>
                     <img id="modalImg" src={this.props.nft.imageURL} alt="" />
                 </Modal.Body>
-                <Modal.Footer className='modalFooter'>
-                    <Button
-                        id="closeModalBtn"
-                        onClick={this.props.onHide}>
-                        Close
-                    </Button>
-                </Modal.Footer>
+
             </Modal>
         );
     }

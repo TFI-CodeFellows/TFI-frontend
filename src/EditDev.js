@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { Button } from '@mui/material';
-import { BsFillCloudUploadFill } from 'react-icons/bs';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
@@ -92,16 +91,6 @@ class EditDev extends React.Component {
               type="text"
               value={this.state.github}
               name="github"
-            />
-            <Form.Label>
-              <BsFillCloudUploadFill />
-              &nbsp; Upload Image:
-            </Form.Label>
-            <Form.Control
-              id="input"
-              onChange={this.handleimageUrlChange}
-              type="file"
-              name="image"
             />
             <Button
               style={{ marginTop: '10px' }}

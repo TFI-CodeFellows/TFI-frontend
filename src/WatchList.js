@@ -57,7 +57,7 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `delete`,
-                baseURL: `http://localhost:3001`,
+                baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
                 url: `/crypto/${_id}`
             }
             await axios(config);
