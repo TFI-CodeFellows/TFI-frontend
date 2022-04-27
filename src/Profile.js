@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
 import { IoMdMenu } from 'react-icons/io';
 import { Card } from 'react-bootstrap';
-import { BsFillBagFill } from 'react-icons/bs';
+import { IoWalletOutline } from "react-icons/io5";
 import { MdGeneratingTokens } from 'react-icons/md';
 import { SiBitcoinsv } from 'react-icons/si';
 import { IoIosHome } from 'react-icons/io';
@@ -157,14 +157,12 @@ class Profile extends React.Component {
         <MintingModal
           modal={this.state.modal}
           hideModal={this.hideModal}
-          handleGetAllNft={this.props.handleGetAllNft}
-        />
+          handleGetAllNft={this.props.handleGetAllNft} />
         {this.state.userDev && (
           <EditDev
             userDev={this.state.userDev}
             modalDev={this.state.modalDev}
-            hideModal={this.hideModal}
-          />
+            hideModal={this.hideModal} />
         )}
       </>
     );
