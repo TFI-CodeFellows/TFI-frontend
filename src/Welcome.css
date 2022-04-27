@@ -79,4 +79,13 @@
     .welcomeDiv {
         width: 93%;
     }
+
+    .explanation h5 {
+        font-size: 1rem !important;
+    }
+
+    .welcomeCont {
+        margin: 2rem 0 0 0;
+        height: 100vh;
+    }
 }
