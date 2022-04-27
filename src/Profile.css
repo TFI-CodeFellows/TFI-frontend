@@ -58,8 +58,8 @@
 }
 
 #profileImage {
-    width: 200px;
-    height: 200px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
 }
 
@@ -165,5 +165,18 @@
 
     #cardInfo p {
         text-align: left;
+    }
+
+    #profileImage {
+        width: 140px;
+        height: 140px;
+    }
+
+    .routes {
+        font-size: 12px;
+    }
+
+    .name {
+        font-size: 14px;
     }
 }
