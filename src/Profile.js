@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
 import { IoMdMenu } from 'react-icons/io';
 import { Card } from 'react-bootstrap';
-import { IoWalletOutline } from "react-icons/io5";
+import { IoWalletOutline } from 'react-icons/io5';
 import { MdGeneratingTokens } from 'react-icons/md';
 import { SiBitcoinsv } from 'react-icons/si';
 import { IoIosHome } from 'react-icons/io';
@@ -27,6 +27,7 @@ class Profile extends React.Component {
       modal: false,
       modalDev: false,
       userDev: null,
+      wallet: null,
     };
   }
   componentDidMount() {
@@ -56,12 +57,25 @@ class Profile extends React.Component {
   hideWalletDrawer = () => {
     this.setState({ walletDrawer: false });
   };
-  render() {
-    const showWalletDrawer = () => {
-      console.log('show wallet drawer');
-      this.setState({ walletDrawer: true });
-    };
 
+  getUserWallet = async () => {
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        headers: { Authorization: `Bearer ${jwt}` },
+        method: `get`,
+        baseURL: `${process.env.REACT_APP_HEROKU_URL}/wallet`,
+      };
+      const walletRes = await axios(config);
+      console.log('wallet items', walletRes.data);
+
+      this.setState({ wallet: walletRes.data });
+      console.log(this.state.wallet);
+    }
+  };
+
+  render() {
     const showForm = () => {
       this.setState({ drawer: true });
     };
@@ -82,11 +96,11 @@ class Profile extends React.Component {
       <>
         <div id="menuDiv">
           <Button id="menuCart">
-            <BsFillBagFill
+            <IoWalletOutline
               onClick={() =>
                 this.state.walletDrawer
                   ? this.hideWalletDrawer()
-                  : this.showWalletDrawer()
+                  : (this.getUserWallet(), this.showWalletDrawer())
               }
             />
           </Button>
@@ -150,19 +164,25 @@ class Profile extends React.Component {
             </div>
           </div>
         </Drawer>
-        <Wallet
-          showWalletDrawer={this.state.walletDrawer}
-          hideWalletDrawer={this.hideWalletDrawer}
-        />
+        {this.state.wallet && (
+          <Wallet
+            getUserWallet={this.getUserWallet}
+            showWalletDrawer={this.state.walletDrawer}
+            hideWalletDrawer={this.hideWalletDrawer}
+            wallet={this.state.wallet}
+          />
+        )}
         <MintingModal
           modal={this.state.modal}
           hideModal={this.hideModal}
-          handleGetAllNft={this.props.handleGetAllNft} />
+          handleGetAllNft={this.props.handleGetAllNft}
+        />
         {this.state.userDev && (
           <EditDev
             userDev={this.state.userDev}
             modalDev={this.state.modalDev}
-            hideModal={this.hideModal} />
+            hideModal={this.hideModal}
+          />
         )}
       </>
     );
