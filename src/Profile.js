@@ -135,14 +135,12 @@ class Profile extends React.Component {
         <MintingModal
           modal={this.state.modal}
           hideModal={this.hideModal}
-          handleGetAllNft={this.props.handleGetAllNft}
-        />
+          handleGetAllNft={this.props.handleGetAllNft} />
         {this.state.userDev && (
           <EditDev
             userDev={this.state.userDev}
             modalDev={this.state.modalDev}
-            hideModal={this.hideModal}
-          />
+            hideModal={this.hideModal} />
         )}
       </>
     );
