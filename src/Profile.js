@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
 import { IoMdMenu } from 'react-icons/io';
 import { Card } from 'react-bootstrap';
-import { BsFillBagFill } from "react-icons/bs";
+import { IoWalletOutline } from "react-icons/io5";
 import { MdGeneratingTokens } from 'react-icons/md';
 import { SiBitcoinsv } from 'react-icons/si';
 import { IoIosHome } from 'react-icons/io';
@@ -68,7 +68,7 @@ class Profile extends React.Component {
       <>
         <div id="menuDiv">
           <Button id="menuCart">
-            <BsFillBagFill
+            <IoWalletOutline
               onClick={() => (this.state.drawer ? hideForm() : showForm())}
             />
           </Button>

@@ -18,7 +18,6 @@ class NFTCarousel extends Component {
   }
 
   handleClick = (nft) => {
-    console.log(nft);
     this.setState({
       selectedNft: nft,
       show: true,

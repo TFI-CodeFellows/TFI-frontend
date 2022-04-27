@@ -35,9 +35,8 @@ class MintingModal extends React.Component {
         method: 'post',
         data: FormData,
       }
-      const rest = await axios(config, FormData);
+      await axios(config, FormData);
       this.props.handleGetAllNft();
-      console.log(rest.data);
     }
   }
   render() {
@@ -51,8 +50,9 @@ class MintingModal extends React.Component {
             <option value='Category' >Select a category</option>
             <option value='Animal'>Animal</option>
             <option value='Art'>Art</option>
-            <option value='Potrait'>Potrait</option>
+            <option value='Portrait'>Portrait</option>
             <option value='Landscape'>Landscape</option>
+            <option value='Random'>Random</option>
           </Form.Control>
           <Form.Label>Price:</Form.Label>
           <Form.Control id="input" type='number' placeholder='Enter Value' name='price' />

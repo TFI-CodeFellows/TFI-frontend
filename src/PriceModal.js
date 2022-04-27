@@ -19,7 +19,6 @@ class PriceModal extends React.Component {
         }
     }
     componentDidMount = () => {
-        console.log(this.props.nft);
     }
 
     handlePriceChange = (event) => this.setState({ price: event.target.value });

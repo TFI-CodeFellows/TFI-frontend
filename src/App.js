@@ -31,7 +31,6 @@ class App extends React.Component {
       method: 'get',
     }
     const res = await axios(config);
-    console.log(res.data);
     this.setState({ allNFT: res.data })
   }
 
