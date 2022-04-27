@@ -9,7 +9,6 @@ class Crypto extends Component {
     render() {
         const filteredCoins = this.props.coins?.filter(coin =>
             coin.name.toLowerCase().includes(this.props.search.toLowerCase()))
-        console.log(this.props.search);
         return (
             <div className="coin-app" >
                 {this.props.coins &&

@@ -5,6 +5,8 @@ import { BsFillCloudUploadFill } from 'react-icons/bs';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
+
+
 class EditDev extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,6 @@ class EditDev extends React.Component {
     };
   }
   handleNameChange = (e) => {
-    console.log(e.target.value);
     this.setState({ name: e.target.value });
   };
 
@@ -25,7 +26,6 @@ class EditDev extends React.Component {
   handleGithubChange = (e) => this.setState({ github: e.target.value });
   handlelinkedInChange = (e) => this.setState({ linkedIn: e.target.value });
   handleimageUrlChange = (e) => this.setState({ imageUrl: e.target.file });
-
   handleUpdateUser = async () => {
     const id = this.props.userDev._id;
     const newProfileData = {
@@ -36,8 +36,6 @@ class EditDev extends React.Component {
       imageURL: this.state.imageURL,
     };
 
-    console.log(this.state.imageURL);
-    console.log(newProfileData);
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -116,7 +114,7 @@ class EditDev extends React.Component {
               }}
             >
               Update Information
-            </Button>
+            </Button> 
           </Form>
         </Modal>
       </>

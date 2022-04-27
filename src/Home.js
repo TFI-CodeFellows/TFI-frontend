@@ -25,10 +25,7 @@ class Home extends React.Component {
     const coinData = { name: coin }
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
-      console.log("res", res);
       const jwt = (res.__raw);
-      console.log("token: ", jwt);
-
       const config = {
         headers: { "Authorization": `Bearer ${jwt}` },
         method: "post",
@@ -52,7 +49,6 @@ class Home extends React.Component {
     await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
       .then(res => {
         this.setState({ coins: res.data });
-        console.log(res.data);
       })
       .catch(error => console.log(error.message));
   }

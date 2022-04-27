@@ -34,7 +34,5 @@ export const APICall = async function (method: Method, url: string, body?: objec
     data: body,
   };
   const rest = await axios(call);
-  console.log(rest.data);
   return rest.data
-
 };
