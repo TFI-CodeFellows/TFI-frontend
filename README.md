@@ -21,3 +21,12 @@ NFTs are  represent real-world items like artwork and real estate.
 * Heroku
 * Netlify
 * Node.js
+* Auth0
+
+## Setup and Startup
+
+1. Clone or download branch to your computer
+2. Run `npm i --force` (while force is usually a bad idea, the recent new React version has made many packages outdated.)
+3. Fill out environment variables, see the sample.
+
+* To start the app as a dev, simply run npm start.
