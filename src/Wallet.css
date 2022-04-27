@@ -25,7 +25,7 @@
 }
 
 .itemDiv {
-  border-bottom: 2px solid rgb(15, 35, 57);
+  border-bottom: 2px solid silver;
   width: 80%;
   display: flex;
 }
@@ -91,7 +91,32 @@
 
 @media (max-width: 600px) {
   .MuiModal-root .MuiPaper-root {
-    width: 70% !important;
+    width: 75% !important;
     background-color: yellow;
+  }
+
+  #checkoutBtn {
+    width: 80%
+  }
+
+  .itemDesc {
+    margin: none;
+    align-items: left;
+    width: 50%;
+  }
+
+  .itemDesc p {
+    text-align: left;
+  }
+
+  #walletIMG {
+    width: 100px;
+    height: 100px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .itemDiv {
+    width: 85%;
   }
 }
