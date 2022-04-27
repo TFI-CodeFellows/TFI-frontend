@@ -113,9 +113,13 @@ class MintingModal extends React.Component {
   render() {
     return (
       <Modal
+        onHide={() => this.props.hideModal()}
         className="mintingNftModal"
         show={this.props.modal}
         size={this.state.sketching && 'xl'}>
+        <Modal.Header closeButton>
+          <Modal.Title>NFT Minting</Modal.Title>
+        </Modal.Header>
         <Container>
           <Row>
             <Col>
@@ -127,7 +131,7 @@ class MintingModal extends React.Component {
                   <option value='Category' >Select a category</option>
                   <option value='Animal'>Animal</option>
                   <option value='Art'>Art</option>
-                  <option value='Potrait'>Potrait</option>
+                  <option value='Portrait'>Portrait</option>
                   <option value='Landscape'>Landscape</option>
                 </Form.Control>
                 <Form.Label>Price:</Form.Label>
@@ -136,8 +140,10 @@ class MintingModal extends React.Component {
                 <Form.Control id="input" type='number' placeholder='Rate this NFT' name='rating' />
                 <Form.Label>Description:</Form.Label>
                 <Form.Control id="input" type='text' as='textarea' placeholder='Enter a Description' name='description' />
-                <Form.Label><BsFillCloudUploadFill />&nbsp; Upload Image:</Form.Label>
-                <Form.Control id="input" type='file' placeholder='Insert an Image' name='image' />
+                <Form.Label><BsFillCloudUploadFill />&nbsp; {this.state.sketchingImg ? 'Using Submitted Sketch!' : 'Upload Image:'}</Form.Label>
+                <div className={this.state.sketchingImg && 'disabled'}>
+                  <Form.Control id="input" type='file' placeholder='Insert an Image' name='image' />
+                </div>
                 <Button id="minNftBtn" variant="contained" type='submit' onClick={() => this.props.hideModal()}>MINT NFT</Button>
               </Form>
             </Col>
@@ -237,8 +243,8 @@ class MintingModal extends React.Component {
                 </Col>
               </>
             )}
-            <Col md="auto">
-              <IconButton className={this.state.sketchingImg && 'disabled'} id="black-ink" onClick={() => this.setColorCanvas('#1f1f1f')}>
+            <Col md="auto" className={this.state.sketching ? 'open-arrow' : 'closed-arrow'}>
+              <IconButton onClick={() => this.setState({sketching: !this.state.sketching})}>
                 {this.state.sketching ? <ArrowBackIos /> : <ArrowForwardIos />}
               </IconButton>
             </Col>
