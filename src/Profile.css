@@ -1,3 +1,14 @@
+#menuDiv {
+    display: flex;
+}
+
+#menuCart {
+    font-size: 2rem !important;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+}
+
 #menu {
     font-size: 3rem !important;
     color: white;
@@ -7,7 +18,7 @@
 
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
     background-color: rgb(54, 52, 52) !important;
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -31,6 +42,21 @@
     padding: 0 30px;
 }
 
+#devBtn {
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%) !important;
+    margin: 10px;
+    width: 10rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    height: 48;
+    padding: 0 30px;
+}
+
 #profileImage {
     width: 200px;
     height: 200px;
@@ -38,7 +64,7 @@
 }
 
 #wallet {
-    width: 320px;
+    width: 350px;
     height: 200px;
     background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%) !important;
     box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
@@ -66,7 +92,7 @@
 
 #wallet div p,
 #wallet div h5 {
-    color: rgb(1, 30, 60) !important;
+    color: white !important;
 }
 
 #bottomBtns {
@@ -84,4 +110,43 @@
 #ether {
     font-size: 3rem;
     margin: 1rem;
+}
+
+#etherImg {
+    width: 60%;
+}
+
+#editProfile {
+    transition-duration: 350ms;
+}
+
+#editProfile:hover {
+    cursor: grab;
+    transform: scale(1.05);
+    transition-duration: 350ms;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(0, 0, 0, 0.22);
+}
+
+#editProfile:active {
+    box-shadow: none;
+    transform: scale(1);
+}
+
+@media(max-width: 600px) {
+    .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+        width: 70%;
+    }
+
+    #menuCart {
+        font-size: 1.5rem !important;
+        margin: 0;
+
+    }
+
+    #menu {
+        font-size: 2rem !important;
+        color: white;
+        cursor: pointer;
+        margin: 0;
+    }
 }

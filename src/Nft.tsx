@@ -1,13 +1,15 @@
 import React from 'react';
+import PriceModal from './PriceModal.js'
 import { APICall, Method } from './helpers';
 import { withAuth0 } from '@auth0/auth0-react';
 import { Row, Col, Card } from 'react-bootstrap';
 import Button from '@mui/material/Button'
 import { IoMdTrash } from 'react-icons/io';
 import { MdModeEditOutline } from 'react-icons/md';
-import './nftcard.css'
+import './Nftcard.css';
 
 type NFT = {
+  _id: string,
   title: string,
   type: string,
   imageURL: string,
@@ -38,21 +40,48 @@ class Nft extends React.Component<IProps, IState> {
     }
   }
 
-  async componentDidMount() {
-    const url = `${process.env.REACT_APP_HEROKU_URL}/nft`
-    const response: { data: NFT[] } = await this.APICall(Method.GET, url)
-    if (response?.data) {
+  componentDidMount() {
+    this.getUserNFTs();
+  }
+
+  getUserNFTs = async () => {
+    const url = `/nft`
+    const response: NFT[] = await this.APICall(Method.GET, url);
+    console.log(response);
+    if (response) {
       this.setState({
-        nfts: response.data,
+        nfts: response,
       })
     }
   }
 
+  handleDeleteNft = async (nft: NFT) => {
+    const url = `/nft/${nft._id}`
+    await this.APICall(Method.DELETE, url);
+    this.getUserNFTs();
+  }
+
+  handleUpdate = async (nft: NFT) => {
+    const url = `/nft/${nft._id}`
+    await this.APICall(Method.DELETE, url);
+    this.getUserNFTs();
+  }
+
+  resetNft = () => {
+    this.setState({ selected: null });
+  }
+
+  onHide = () => {
+    this.setState({ show: false });
+  }
+
   render() {
+
+
     return (
       <div className="myNFTDiv">
         <h1>My NFTs</h1>
-        <Row xs={1} sm={2} md={3} lg={3} xl={4} className='resRow'>
+        <Row xs={1} sm={2} md={2} lg={3} xl={4} className='resRow'>
           {this.state.nfts.map((nft, idx) => {
             return (
               <Col key={idx}>
@@ -61,13 +90,6 @@ class Nft extends React.Component<IProps, IState> {
                     className='nftImg'
                     src={nft.imageURL}
                     alt={nft.title}
-                    onClick={() => {
-                      console.log('hello');
-                      this.setState({
-                        show: true,
-                        selected: nft,
-                      });
-                    }}
                   />
                   <div id="cardDiv">
                     <div>
@@ -80,12 +102,27 @@ class Nft extends React.Component<IProps, IState> {
                     </div>
                   </div>
                   <div id="cardBtns">
-                    <Button id="dltBtn" variant="contained" disableElevation>
+                    <Button
+                      id="dltBtn"
+                      variant="contained"
+                      disableElevation
+                      onClick={() => this.handleDeleteNft(nft)}
+                    >
                       <IoMdTrash /> &nbsp; Delete
                     </Button>
-                    <Button id="edtBtn" variant="outlined" >
+                    <Button
+                      id="edtBtn"
+                      variant="outlined"
+                      onClick={() => {
+                        console.log('hello');
+                        this.setState({
+                          show: true,
+                          selected: nft,
+                        });
+                      }}
+                    >
                       <MdModeEditOutline />
-                      &nbsp; Edit
+                      &nbsp; Edit Price
                     </Button>
                   </div>
                 </Card>
@@ -93,9 +130,18 @@ class Nft extends React.Component<IProps, IState> {
             )
           })}
         </Row>
+        {this.state.selected &&
+          <PriceModal
+            show={this.state.show}
+            onHide={this.onHide}
+            nft={this.state.selected}
+            resetNft={this.resetNft}
+            getUserNFTs={this.getUserNFTs}
+          />}
       </div >
     )
   }
 }
+
 
 export default withAuth0(Nft);

@@ -1,12 +1,15 @@
-import { Modal, Form, Container, Row, Col } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import './Modal.css';
 import React from "react";
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import { ReactSketchCanvas } from 'react-sketch-canvas';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import IconButton from '@mui/material/IconButton';
 import { Undo, Redo, Delete, Brush, UploadFile, Edit, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 
 const CANVAS_STYLE = {
@@ -88,6 +91,7 @@ class MintingModal extends React.Component {
     bodyFormData.append('image', this.state.sketchingImg || e.target.image.files[0]);
     this.createNFT(bodyFormData);
   }
+
   createNFT = async (FormData) => {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
@@ -102,11 +106,11 @@ class MintingModal extends React.Component {
         data: FormData,
       }
       const rest = await axios(config, FormData);
+      this.props.handleGetAllNft();
       console.log(rest.data);
     }
   }
   render() {
-
     return (
       <Modal
         className="mintingNftModal"
@@ -133,7 +137,7 @@ class MintingModal extends React.Component {
                 <Form.Label>Description:</Form.Label>
                 <Form.Control id="input" type='text' as='textarea' placeholder='Enter a Description' name='description' />
                 <Form.Label><BsFillCloudUploadFill />&nbsp; Upload Image:</Form.Label>
-                <Form.Control className={this.state.sketchingImg && 'disabled'} disabled={this.state.sketchingImg} id="input" type='file' placeholder='Insert an Image' name='image' />
+                <Form.Control id="input" type='file' placeholder='Insert an Image' name='image' />
                 <Button id="minNftBtn" variant="contained" type='submit' onClick={() => this.props.hideModal()}>MINT NFT</Button>
               </Form>
             </Col>

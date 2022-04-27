@@ -146,3 +146,68 @@
         margin: 5px 0;
     }
 }
+
+#addToCryptoWatchList:hover {
+    border-radius: 5%;
+    padding: none;
+    background: linear-gradient(-225deg,
+            #ac32e3 10%,
+            #7918f2 60%,
+            #4801ff 100%);
+}
+
+@media (max-width: 600px) {
+    #addToCryptoWatchList {
+        width: 98%;
+        margin: 5px;
+        border-radius: 10%;
+    }
+
+    #addToCryptoWatchList:hover {
+        border-radius: 2%;
+        margin: 5px 0;
+        background: linear-gradient(-225deg,
+                #ac32e3 10%,
+                #7918f2 60%,
+                #4801ff 100%);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+
+    .coin-row {
+        flex-direction: column;
+        width: 80vw;
+        height: 100%;
+        align-items: center;
+        align-content: center;
+    }
+
+    .coin-data {
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+    }
+
+    .coin {
+        justify-content: center;
+        height: 30px;
+        align-items: center;
+        align-content: center;
+        margin: 10px auto;
+    }
+
+    .coin {
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    p {
+        text-align: center;
+        margin: 5px 0;
+    }
+}
