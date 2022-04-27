@@ -17,6 +17,7 @@ import EditDev from './EditDev';
 import { FaEdit } from 'react-icons/fa';
 import axios from 'axios';
 import Wallet from './Wallet';
+import { IoIosPerson } from "react-icons/io";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -120,25 +121,29 @@ class Profile extends React.Component {
             Mint NFT
           </Button>
           <Button href="/">
-            <h5>
+            <h5 className='routes'>
               <IoIosHome /> &nbsp; Home
             </h5>
           </Button>
           <Button href="/watchlist">
-            <h5>
+            <h5 className='routes'>
               <SiBitcoinsv /> &nbsp; My Watchlist
             </h5>
           </Button>
           <Button href="/nft">
-            <h5>
+            <h5 className='routes'>
               <MdGeneratingTokens /> &nbsp; My NFTs
             </h5>
           </Button>
           <Image id="profileImage" src={user.picture} alt={user.name} />
-          <h3>
+
+          <h3 className="name">
             {user.name} &nbsp;{' '}
             <FaEdit id="editProfile" onClick={showDevModal} />
           </h3>
+          <h5 className='routes'>
+            <IoIosPerson /> &nbsp; Admin
+          </h5>
           <div>
             <Card id="wallet">
               <div>
