@@ -7,7 +7,7 @@
 
 .modal-content {
     padding: 1rem;
-    background-color: rgb(72, 70, 70) !important;
+    background-color: #363434 !important;
 }
 
 
@@ -91,13 +91,14 @@
     justify-content: space-between;
 }
 
-.open-arrow, .closed-arrow {
+.open-arrow,
+.closed-arrow {
     align-self: center !important;
     margin: auto -0.5rem;
     padding: 0;
 }
 
-.open-arrow > .MuiButtonBase-root > svg {
+.open-arrow>.MuiButtonBase-root>svg {
     margin-left: 0.35rem;
     margin-right: -0.35rem;
 }
@@ -118,18 +119,23 @@
 #red-ink {
     background-color: #e2503d !important;
 }
+
 #pink-ink {
     background-color: #ca5db9 !important;
 }
+
 #blue-ink {
     background-color: #256cde !important;
 }
+
 #yellow-ink {
     background-color: #f1f366 !important;
 }
+
 #green-ink {
     background-color: #82f366 !important;
 }
+
 #black-ink {
     background-color: #1f1f1f !important;
 }
