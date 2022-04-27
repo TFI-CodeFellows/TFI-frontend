@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import { IoIosHome } from 'react-icons/io';
 import axios from 'axios';
 import './Wallet.css';
+import { withAuth0 } from '@auth0/auth0-react';
 
 class Wallet extends Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class Wallet extends Component {
     };
   }
 
-  handleDeleteWalletItem = async () => {
+  handleDeleteWalletItem = async (item) => {
     console.log('deleting item');
-    const { _id } = this.state.walletItem;
+    const { _id } = item;
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -30,42 +30,47 @@ class Wallet extends Component {
       });
     }
   };
-
   render() {
     return (
       <Drawer
         open={this.props.showWalletDrawer}
         anchor="right"
         onClose={this.props.hideWalletDrawer}
+        class={"walletDrawer"}
       >
-        <h1>Wallet drawer</h1>
-
-        {this.props.wallet &&
-          this.props.wallet.map((item) => {
-            return (
-              <div>
-                <h6>{item.title}</h6>
-                <img id="walletIMG" src={item.imageURL} alt="" />
-                <h5>Price: {item.price} ETH</h5>
-                <button
-                  onClick={() => {
-                    this.setState({ walletItem: item });
-                    this.handleDeleteWalletItem();
-                  }}
-                >
-                  Remove from wallet
-                </button>
-              </div>
-            );
-          })}
-        <Button href="/">
-          <h5>
-            <IoIosHome /> &nbsp; Home
-          </h5>
+        <h2 id="walletTitle">Wallet Items</h2>
+        <div className="walletCont">
+          {this.props.wallet &&
+            this.props.wallet.map((item, idx) => {
+              return (
+                <div className="itemDiv" key={item._id}>
+                  <img id="walletIMG" src={item.imageURL} alt="" />
+                  <div className="itemDesc">
+                    <p>Item: {idx + 1}</p>
+                    <h6>{item.title}</h6>
+                    <h6>Price: {item.price} ETH</h6>
+                    <div id="btnDiv">
+                      <button
+                        id="itemBtn"
+                        onClick={() => {
+                          this.setState({ walletItem: item });
+                          this.handleDeleteWalletItem(item);
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+        <Button id="checkoutBtn">
+          Proceed to Checkout
         </Button>
       </Drawer>
     );
   }
 }
 
-export default Wallet;
+export default withAuth0(Wallet);
