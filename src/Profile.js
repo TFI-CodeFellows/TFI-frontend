@@ -151,7 +151,7 @@ class Profile extends React.Component {
                   alt=""
                 />
               </div>
-              <div>
+              <div id="cardInfo">
                 <h5>xxx-xxx-xxxx</h5>
                 <p>{user.email}</p>
               </div>

@@ -95,7 +95,7 @@ h1 {
 
 @media (max-width:600px) {
   .aboutRow {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,12 +103,20 @@ h1 {
     justify-content: center !important;
   }
 
-  .aboutCard {
-    width: 400px;
+  #outerBorder {
+    width: 110%;
   }
 
-  .aboutRow {
-    width: 100%;
+  .aboutCard {
+    width: 97% !important;
+  }
+
+  #read-more {
+    width: 90%;
+  }
+
+  .aboutDiv {
+    margin-top: 5rem;
   }
 
 }
