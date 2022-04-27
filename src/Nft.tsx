@@ -47,7 +47,6 @@ class Nft extends React.Component<IProps, IState> {
   getUserNFTs = async () => {
     const url = `/nft`
     const response: NFT[] = await this.APICall(Method.GET, url);
-    console.log(response);
     if (response) {
       this.setState({
         nfts: response,
@@ -114,7 +113,6 @@ class Nft extends React.Component<IProps, IState> {
                       id="edtBtn"
                       variant="outlined"
                       onClick={() => {
-                        console.log('hello');
                         this.setState({
                           show: true,
                           selected: nft,

@@ -23,7 +23,6 @@ class About extends React.Component {
     };
     const res = await axios(config);
     this.setState({ devs: res.data });
-    console.log(res.data);
   };
 
   showBio = () => this.setState({ showModal: true });
@@ -65,7 +64,7 @@ class About extends React.Component {
                       </div>
                       <div className="cardTextDiv">
                         <Card.Text className="cardText">
-                          <p>{dev.bio}</p>
+                          {dev.bio}
                         </Card.Text>
                       </div>
                       <Card.Text

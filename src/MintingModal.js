@@ -105,9 +105,8 @@ class MintingModal extends React.Component {
         method: 'post',
         data: FormData,
       }
-      const rest = await axios(config, FormData);
+      await axios(config, FormData);
       this.props.handleGetAllNft();
-      console.log(rest.data);
     }
   }
   render() {

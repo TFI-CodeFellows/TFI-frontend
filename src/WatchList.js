@@ -26,9 +26,7 @@ class WatchList extends Component {
         console.log("Getting watchlist");
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
-            console.log("res", res);
             const jwt = res.__raw;
-            console.log('token: ', jwt);
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `get`,
@@ -51,14 +49,10 @@ class WatchList extends Component {
 
     removeFromWatchlist = async (coinName) => {
         const deleteCoin = this.state.myCoins.filter((coin) => coin.name === coinName);
-        const { _id, name } = deleteCoin[0];
-        console.log(_id);
-        console.log(name);
+        const { _id } = deleteCoin[0];
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
-            console.log("res", res);
             const jwt = res._raw;
-            console.log('token: ', jwt);
 
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
@@ -66,8 +60,7 @@ class WatchList extends Component {
                 baseURL: `http://localhost:3001`,
                 url: `/crypto/${_id}`
             }
-            const coinRes = await axios(config);
-            console.log("delete coin", coinRes.data);
+            await axios(config);
             this.handleGetCryptos()
             this.getCoinsWatchList();
         }
@@ -82,7 +75,6 @@ class WatchList extends Component {
             }
         }
         let crypto = res.filter(val => arr.includes(val.name));
-        console.log(crypto);
         this.setState({ coinsWatchList: crypto });
     }
 
