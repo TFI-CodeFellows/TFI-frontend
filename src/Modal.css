@@ -1,5 +1,4 @@
 .nftForm {
-    margin: 1rem;
     display: flex;
     align-items: center;
     align-content: center;
@@ -7,6 +6,7 @@
 }
 
 .modal-content {
+    padding: 1rem;
     background-color: rgb(72, 70, 70) !important;
 }
 
@@ -44,6 +44,95 @@
     border-radius: 3%;
 }
 
+
+.canvas-brush {
+    cursor: url('./brush.png'), auto;
+}
+
+.canvas-eraser {
+    cursor: url('./pencil.png'), auto;
+}
+
+.separator {
+    flex-grow: 1;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.canvas-dimmer {
+    height: 100%;
+}
+
+.options-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.options-panel .MuiButtonBase-root {
+    margin: 0.5rem;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.open-arrow, .closed-arrow {
+    align-self: center !important;
+    margin: auto -0.5rem;
+    padding: 0;
+}
+
+.open-arrow > .MuiButtonBase-root > svg {
+    margin-left: 0.35rem;
+    margin-right: -0.35rem;
+}
+
+.modal-header {
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.options-panel .MuiButtonBase-root {
+    background-color: rgb(31, 36, 39) !important;
+}
+
+.icon-button {
+    padding: 0.5rem 1.25rem !important;
+}
+
+#red-ink {
+    background-color: #e2503d !important;
+}
+#pink-ink {
+    background-color: #ca5db9 !important;
+}
+#blue-ink {
+    background-color: #256cde !important;
+}
+#yellow-ink {
+    background-color: #f1f366 !important;
+}
+#green-ink {
+    background-color: #82f366 !important;
+}
+#black-ink {
+    background-color: #1f1f1f !important;
+}
 
 .modalBody,
 .modalHeader,
