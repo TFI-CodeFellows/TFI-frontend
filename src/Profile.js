@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import MintingModal from './MintingModal';
 import { IoMdMenu } from 'react-icons/io';
 import { Card } from 'react-bootstrap';
-import { BsFillBagFill } from "react-icons/bs";
+import { BsFillBagFill } from 'react-icons/bs';
 import { MdGeneratingTokens } from 'react-icons/md';
 import { SiBitcoinsv } from 'react-icons/si';
 import { IoIosHome } from 'react-icons/io';
@@ -16,12 +16,14 @@ import { SiEthereum } from 'react-icons/si';
 import EditDev from './EditDev';
 import { FaEdit } from 'react-icons/fa';
 import axios from 'axios';
+import Wallet from './Wallet';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       drawer: false,
+      walletDrawer: false,
       modal: false,
       modalDev: false,
       userDev: null,
@@ -47,7 +49,19 @@ class Profile extends React.Component {
   hideModal = () => {
     this.setState({ modal: false, modalDev: false });
   };
+  showWalletDrawer = () => {
+    console.log('show wallet drawer');
+    this.setState({ walletDrawer: true });
+  };
+  hideWalletDrawer = () => {
+    this.setState({ walletDrawer: false });
+  };
   render() {
+    const showWalletDrawer = () => {
+      console.log('show wallet drawer');
+      this.setState({ walletDrawer: true });
+    };
+
     const showForm = () => {
       this.setState({ drawer: true });
     };
@@ -69,7 +83,11 @@ class Profile extends React.Component {
         <div id="menuDiv">
           <Button id="menuCart">
             <BsFillBagFill
-              onClick={() => (this.state.drawer ? hideForm() : showForm())}
+              onClick={() =>
+                this.state.walletDrawer
+                  ? this.hideWalletDrawer()
+                  : this.showWalletDrawer()
+              }
             />
           </Button>
           <Button id="menu">
@@ -132,6 +150,10 @@ class Profile extends React.Component {
             </div>
           </div>
         </Drawer>
+        <Wallet
+          showWalletDrawer={this.state.walletDrawer}
+          hideWalletDrawer={this.hideWalletDrawer}
+        />
         <MintingModal
           modal={this.state.modal}
           hideModal={this.hideModal}
