@@ -149,4 +149,21 @@
         cursor: pointer;
         margin: 0;
     }
+
+    #wallet {
+        margin: 10px;
+        width: 90%;
+        height: 220px;
+    }
+
+    #cardInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        margin: 3px;
+    }
+
+    #cardInfo p {
+        text-align: left;
+    }
 }
