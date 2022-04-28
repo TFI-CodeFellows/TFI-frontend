@@ -34,6 +34,7 @@ class Profile extends React.Component {
   componentDidMount() {
     this.handleGetUserDev();
   }
+
   handleGetUserDev = async (coin) => {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
@@ -72,7 +73,6 @@ class Profile extends React.Component {
       console.log('wallet items', walletRes.data);
 
       this.setState({ wallet: walletRes.data });
-      console.log(this.state.wallet);
     }
   };
 
@@ -139,13 +139,15 @@ class Profile extends React.Component {
 
           <h3 className="name">
             {user.name} &nbsp;{' '}
-            <FaEdit id="editProfile" onClick={showDevModal} />
+            {this.state.userDev && <FaEdit id="editProfile" onClick={showDevModal} /> }
           </h3>
-          <Button href="/admin">
-            <h5 className='routes'>
-              <IoIosPerson /> &nbsp; Admin
-            </h5>
-          </Button>
+          {this.state.userDev &&
+            <Button href="/admin">
+              <h5 className='routes'>
+                <IoIosPerson /> &nbsp; Admin
+              </h5>
+            </Button>
+          }
           <div>
             <Card id="wallet">
               <div>
