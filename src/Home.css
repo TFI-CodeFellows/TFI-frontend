@@ -93,4 +93,21 @@
         background-color: rgb(44, 49, 58);
     }
 
+    .btnDiv {
+        margin: 0
+    }
+}
+
+@media (max-width:600px) {
+    .searchDiv {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+
+    #btnDiv {
+        margin: 5px;
+    }
 }
