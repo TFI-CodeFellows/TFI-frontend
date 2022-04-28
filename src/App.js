@@ -1,5 +1,6 @@
 import React from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
+import Admin from './Admin';
 import ReactLoading from 'react-loading';
 import Home from './Home';
 import About from './About';
@@ -89,6 +90,7 @@ class App extends React.Component {
                     />
                   }
                 />
+                <Route path="admin" element={<Admin />} />
                 <Route path="crypto" element={<Crypto />} />
                 <Route path="nft" element={<Nft />} />
                 <Route path="watchlist" element={<WatchList />} />
