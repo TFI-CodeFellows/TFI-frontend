@@ -82,8 +82,16 @@ class Home extends React.Component {
       return nft.title.toLowerCase().includes(this.state.search.toLowerCase());
     }
 
+    /// returns a boolean on whether this array should render
     const headerCondition = nftArr => {
-      
+      if(!this.state.search) {
+        return true
+      }
+      // is searching, is the searchType because a parent comp checks
+      if(nftArr.length) {
+        return true
+      }
+      return false
     }
 
     const animalNFTs = this.props.allNFT.filter(nft => filterCondition(nft, 'Animal'))
@@ -99,32 +107,31 @@ class Home extends React.Component {
           <>
             <div className="searchDiv">
               <SearchBar
+                onCancelSearch={() => {this.setState({search: ''})}}
+                searchIcon={<div style={{visibility: "hidden"}} />}
                 placeholder={`Search for ${this.state.searchType}`}
                 value={this.state.search}
                 id="searchBar"
                 onChange={(value) => { this.setState({ search: value }) }} />
-              <div>
-                Search by:
-              </div>
               <Button variant={this.state.searchType === 'NFTs' ? 'outlined' : 'contained'} onClick={() => {this.setState({ searchType: 'NFTs' })}}>NFTs</Button>
               <Button variant={this.state.searchType === 'Crypto' ? 'outlined' : 'contained'} onClick={() => {this.setState({ searchType: 'Crypto' })}}>Crypto</Button>
             </div>
             <div id="homeComponents">
               {(!this.state.search || this.state.searchType === 'NFTs') && (
                 <>
-                  {(!this.state.search || this.state.searchType === 'NFTs') && <h2>Animals</h2>}
+                  {headerCondition(animalNFTs) && <h2>Animals</h2>}
                   {animalNFTs.length ? (
                     <NftCarousel nftArr={animalNFTs} />
                   ) : !this.state.search && <h4>No animals submitted yet :(</h4>}
-                  {(!this.state.search || this.state.searchType === 'NFTs') && <h2>Art</h2>}
+                  {headerCondition(artNFTs) && <h2>Art</h2>}
                   {artNFTs.length ? (
                     <NftCarousel nftArr={artNFTs} />
                   ) : !this.state.search && <h4>No art submitted yet :(</h4>}
-                  {(!this.state.search || this.state.searchType === 'NFTs') && <h2>Portraits</h2>}
+                  {headerCondition(portraitNFTs) && <h2>Portraits</h2>}
                   {portraitNFTs.length ? (
                     <NftCarousel nftArr={portraitNFTs} />
                   ) : !this.state.search && <h4>No portraits submitted yet :(</h4>}
-                  {(!this.state.search || (this.state.searchType === 'NFTs' && !!landscapeNFTs.length)) && <h2>Landscapes</h2>}
+                  {headerCondition(landscapeNFTs) && <h2>Landscapes</h2>}
                   {landscapeNFTs.length ? (
                     <NftCarousel nftArr={landscapeNFTs} />
                   ) : !this.state.search && <h4>No landscapes submitted yet :(</h4>}
@@ -136,7 +143,7 @@ class Home extends React.Component {
                   search={this.state.searchType === 'Crypto' ? this.state.search : ''}
                   addToWatchList={this.addToWatchList} />
               )}
-              {!!noResults && <h2>No results! Try something else...?</h2>}
+              {noResults && <h2>No results! Try something else...?</h2>}
             </div>
           </>}
       </div>

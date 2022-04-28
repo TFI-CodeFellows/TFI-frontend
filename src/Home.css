@@ -33,6 +33,10 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.searchDiv .ForwardRef-searchIconButton-4 {
+    visibility: hidden !important;
+}
+
 .MuiPaper-rounded {
     padding-left: 16px;
     width: 480px;
