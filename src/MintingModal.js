@@ -22,7 +22,7 @@ class MintingModal extends React.Component {
     super(props)
     this.canvas = React.createRef();
     this.state = {
-      sketching: true,
+      sketching: false,
       sketchingColor: '#1f1f1f',
       sketchingEraseMode: false,
       sketchingImg: null,
