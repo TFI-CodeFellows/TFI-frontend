@@ -8,7 +8,7 @@ import ReactLoading from 'react-loading';
 class Welcome extends React.Component {
 
     componentDidMount() {
-        console.log("Welcome");
+        console.log("Welcome To M3rcado");
     }
 
 

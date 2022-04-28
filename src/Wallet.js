@@ -14,7 +14,6 @@ class Wallet extends Component {
   }
 
   handleDeleteWalletItem = async (item) => {
-    console.log('deleting item');
     const { _id } = item;
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();

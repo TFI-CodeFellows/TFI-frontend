@@ -53,7 +53,6 @@ class Profile extends React.Component {
     this.setState({ modal: false, modalDev: false });
   };
   showWalletDrawer = () => {
-    console.log('show wallet drawer');
     this.setState({ walletDrawer: true });
   };
   hideWalletDrawer = () => {
@@ -70,8 +69,6 @@ class Profile extends React.Component {
         baseURL: `${process.env.REACT_APP_HEROKU_URL}/wallet`,
       };
       const walletRes = await axios(config);
-      console.log('wallet items', walletRes.data);
-
       this.setState({ wallet: walletRes.data });
     }
   };
@@ -142,7 +139,7 @@ class Profile extends React.Component {
             {this.state.userDev && <FaEdit id="editProfile" onClick={showDevModal} /> }
           </h3>
           {this.state.userDev &&
-            <Button href="/admin">
+            <Button variant="contained" color="success" href="/admin">
               <h5 className='routes'>
                 <IoIosPerson /> &nbsp; Admin
               </h5>
