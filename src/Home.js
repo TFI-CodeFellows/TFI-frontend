@@ -21,6 +21,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.handleGetCryptos();
+    this.handleGetUserProfile();
   }
 
   addToWatchList = async (coin) => {
@@ -38,7 +39,20 @@ class Home extends React.Component {
       await axios(config)
     }
   }
+  handleGetUserProfile = async () => {
+    console.log(this.props.auth0)
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
 
+      const config = {
+        headers: { Authorization: `Bearer ${jwt}` },
+        baseURL: `${process.env.REACT_APP_HEROKU_URL}/userProfile`,
+        method: 'get',
+      };
+      await axios(config)
+    }
+  };
 
 
   DailyNfts() {
