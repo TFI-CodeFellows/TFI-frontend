@@ -1,4 +1,5 @@
 .homeContainer {
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,9 +7,37 @@
     justify-content: space-between;
 }
 
+#searchBar {
+    color: white;
+}
+
+.searchDiv {
+    display: flex;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 15px;
+    margin: 10rem -6rem 4rem 0 !important;
+    z-index: 9;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.searchDiv > * {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.searchDiv > .MuiButtonBase-root {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.searchDiv .ForwardRef-searchIconButton-4 {
+    visibility: hidden !important;
+}
 
 .MuiPaper-rounded {
-    margin: 10rem 0 4rem 0 !important;
     padding-left: 16px;
     width: 480px;
     height: 50px !important;
@@ -20,20 +49,23 @@
             #4801ff 100%) !important;
     color: white;
     font-size: 1.5rem;
-    position: sticky;
-    top: 15px;
-    z-index: 9;
 }
 
-@media (max-width:600px) {
+@media (max-width:1370px) {
     .rec-pagination {
         display: none !important;
     }
 
-    .MuiPaper-rounded {
-        position: sticky;
+     .searchDiv {
         top: 100px;
-        width: 90%;
+     }
+
+     .searchDiv > .MuiButtonBase-root {
+        background-color: rgb(0, 0, 0);
+    }
+
+    .searchDiv > .MuiButtonBase-root:hover {
+        background-color: rgb(44, 49, 58);
     }
 
 }
