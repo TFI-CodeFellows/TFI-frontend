@@ -67,6 +67,7 @@ class NFTCarousel extends Component {
             show={this.state.show}
             nft={this.state.selectedNft}
             onHide={this.onHide}
+            addWalletItem={this.props.addWalletItem}
           />}
       </>
     );

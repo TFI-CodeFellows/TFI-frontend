@@ -31,8 +31,8 @@ class Welcome extends React.Component {
                 {!this.props.auth0.isAuthenticated &&
                     <div className="welcomeDiv">
                         <div>
-                            <div class='name-animation'>
-                                <h1 class="typewriter">  Welcome to M3rcado</h1>
+                            <div className='name-animation'>
+                                <h1 className="typewriter">  Welcome to M3rcado</h1>
                             </div>
                             <LoginButton />
                         </div>
