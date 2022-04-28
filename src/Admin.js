@@ -11,9 +11,7 @@ class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            coinsWatchList: [],
-            coins: null,
-            myCoins: null
+            users: null
         }
     }
 

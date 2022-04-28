@@ -110,8 +110,10 @@ class Home extends React.Component {
                 value={this.state.search}
                 id="searchBar"
                 onChange={(value) => { this.setState({ search: value }) }} />
-              <Button variant={this.state.searchType === 'NFTs' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'NFTs' }) }}>NFTs</Button>
-              <Button variant={this.state.searchType === 'Crypto' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'Crypto' }) }}>Crypto</Button>
+              <div id="btnDiv">
+                <Button id="searchBtnOne" variant={this.state.searchType === 'NFTs' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'NFTs' }) }}>NFTs</Button>
+                <Button id="searchBtnTwo" variant={this.state.searchType === 'Crypto' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'Crypto' }) }}>Crypto</Button>
+              </div>
             </div>
             <div id="homeComponents">
               {(!this.state.search || this.state.searchType === 'NFTs') && (
