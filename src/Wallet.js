@@ -36,7 +36,7 @@ class Wallet extends Component {
         open={this.props.showWalletDrawer}
         anchor="right"
         onClose={this.props.hideWalletDrawer}
-        class={"walletDrawer"}
+        className={"walletDrawer"}
       >
         <h2 id="walletTitle">Wallet Items</h2>
         <div className="walletCont">

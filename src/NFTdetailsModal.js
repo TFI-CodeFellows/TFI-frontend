@@ -36,7 +36,7 @@ class NFTdetailsModal extends Component {
                         <p>{this.props.nft.description}</p>
                         <Button
                             id="addModalBtn"
-                            onClick={""}
+                            onClick={() => this.props.addWalletItem(this.props.nft)}
                         >
                             Add to Wallet
                         </Button>

@@ -54,13 +54,13 @@ class Home extends React.Component {
       })
       .catch(error => console.log(error.message));
   }
-  
+
   render() {
     const {
       isLoading,
       isAuthenticated,
     } = this.props.auth0
-    
+
     if (isLoading) {
       return (
         <div>
@@ -68,12 +68,12 @@ class Home extends React.Component {
         </div>
       )
     }
-    
+
     const filterCondition = (nft, type) => {
-      if(nft.type !== type) {
+      if (nft.type !== type) {
         return false;
       };
-      if(this.state.searchType === 'Crypto' || !this.state.search) {
+      if (this.state.searchType === 'Crypto' || !this.state.search) {
         return true;
       };
       return nft.title.toLowerCase().includes(this.state.search.toLowerCase());
@@ -81,11 +81,11 @@ class Home extends React.Component {
 
     /// returns a boolean on whether this array should render
     const headerCondition = nftArr => {
-      if(!this.state.search) {
+      if (!this.state.search) {
         return true
       }
       // is searching, is the searchType because a parent comp checks
-      if(nftArr.length) {
+      if (nftArr.length) {
         return true
       }
       return false
@@ -104,33 +104,45 @@ class Home extends React.Component {
           <>
             <div className="searchDiv">
               <SearchBar
-                onCancelSearch={() => {this.setState({search: ''})}}
-                searchIcon={<div style={{visibility: "hidden"}} />}
+                onCancelSearch={() => { this.setState({ search: '' }) }}
+                searchIcon={<div style={{ visibility: "hidden" }} />}
                 placeholder={`Search for ${this.state.searchType}`}
                 value={this.state.search}
                 id="searchBar"
                 onChange={(value) => { this.setState({ search: value }) }} />
-              <Button variant={this.state.searchType === 'NFTs' ? 'outlined' : 'contained'} onClick={() => {this.setState({ searchType: 'NFTs' })}}>NFTs</Button>
-              <Button variant={this.state.searchType === 'Crypto' ? 'outlined' : 'contained'} onClick={() => {this.setState({ searchType: 'Crypto' })}}>Crypto</Button>
+              <Button variant={this.state.searchType === 'NFTs' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'NFTs' }) }}>NFTs</Button>
+              <Button variant={this.state.searchType === 'Crypto' ? 'outlined' : 'contained'} onClick={() => { this.setState({ searchType: 'Crypto' }) }}>Crypto</Button>
             </div>
             <div id="homeComponents">
               {(!this.state.search || this.state.searchType === 'NFTs') && (
                 <>
                   {headerCondition(animalNFTs) && <h2>Animals</h2>}
                   {animalNFTs.length ? (
-                    <NftCarousel nftArr={animalNFTs} />
+                    <NftCarousel
+                      nftArr={animalNFTs}
+                      addWalletItem={this.props.addWalletItem}
+                    />
                   ) : !this.state.search && <h4>No animals submitted yet :(</h4>}
                   {headerCondition(artNFTs) && <h2>Art</h2>}
                   {artNFTs.length ? (
-                    <NftCarousel nftArr={artNFTs} />
+                    <NftCarousel
+                      nftArr={artNFTs}
+                      addWalletItem={this.props.addWalletItem}
+                    />
                   ) : !this.state.search && <h4>No art submitted yet :(</h4>}
                   {headerCondition(portraitNFTs) && <h2>Portraits</h2>}
                   {portraitNFTs.length ? (
-                    <NftCarousel nftArr={portraitNFTs} />
+                    <NftCarousel
+                      nftArr={portraitNFTs}
+                      addWalletItem={this.props.addWalletItem}
+                    />
                   ) : !this.state.search && <h4>No portraits submitted yet :(</h4>}
                   {headerCondition(landscapeNFTs) && <h2>Landscapes</h2>}
                   {landscapeNFTs.length ? (
-                    <NftCarousel nftArr={landscapeNFTs} />
+                    <NftCarousel
+                      nftArr={landscapeNFTs}
+                      addWalletItem={this.props.addWalletItem}
+                    />
                   ) : !this.state.search && <h4>No landscapes submitted yet :(</h4>}
                 </>
               )}
