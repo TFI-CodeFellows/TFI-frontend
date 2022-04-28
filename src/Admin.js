@@ -20,7 +20,6 @@ class Admin extends Component {
     }
 
     handleGetAllUsers = async () => {
-        console.log(this.props.auth0)
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
             const jwt = res.__raw;
@@ -32,15 +31,12 @@ class Admin extends Component {
             };
             await axios(config)
                 .then(response => {
-                    console.log(response.data)
                     this.setState({ users: response.data })
                 })
         }
     };
     handleDeleteUser = async (user) => {
         const { _id } = user;
-        console.log(_id);
-        console.log('deleting user');
         if (this.props.auth0.isAuthenticated) {
             const res = await this.props.auth0.getIdTokenClaims();
             const jwt = res._raw;
@@ -50,7 +46,6 @@ class Admin extends Component {
                 method: `delete`,
                 baseURL: `${process.env.REACT_APP_HEROKU_URL}/deleteUser/${_id}`
             }
-            console.log('about to delete user beofre await');
             await axios(config);
             this.handleGetAllUsers()
         }

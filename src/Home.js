@@ -40,7 +40,6 @@ class Home extends React.Component {
     }
   }
   handleGetUserProfile = async () => {
-    console.log(this.props.auth0)
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
