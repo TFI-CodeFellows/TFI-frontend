@@ -141,9 +141,11 @@ class Profile extends React.Component {
             {user.name} &nbsp;{' '}
             <FaEdit id="editProfile" onClick={showDevModal} />
           </h3>
-          <h5 className='routes'>
-            <IoIosPerson /> &nbsp; Admin
-          </h5>
+          <Button href="/admin">
+            <h5 className='routes'>
+              <IoIosPerson /> &nbsp; Admin
+            </h5>
+          </Button>
           <div>
             <Card id="wallet">
               <div>

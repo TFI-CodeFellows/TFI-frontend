@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import './Admin.css';
 import './WatchList.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import ReactLoading from 'react-loading';
-import { AiOutlineMinusCircle } from "react-icons/ai";
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { AiOutlineMinusCircle } from "react-icons/ai";
 
-class WatchList extends Component {
+class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,7 +58,8 @@ class WatchList extends Component {
             const config = {
                 headers: { "Authorization": `Bearer ${jwt}` },
                 method: `delete`,
-                baseURL: `${process.env.REACT_APP_HEROKU_URL}/crypto/${_id}`
+                baseURL: `${process.env.REACT_APP_HEROKU_URL}`,
+                url: `/crypto/${_id}`
             }
             await axios(config);
             this.handleGetCryptos()
@@ -77,7 +79,53 @@ class WatchList extends Component {
         this.setState({ coinsWatchList: crypto });
     }
 
+
+
     render() {
+        const userSample = [
+            {
+                fname: "Elon",
+                lname: "Mask",
+                user: true,
+                admin: false,
+                visits: 20
+            },
+            {
+                fname: "Jeff",
+                lname: "Bezoos",
+                user: true,
+                admin: false,
+                visits: 1
+            },
+            {
+                fname: "Mark",
+                lname: "Zukerberg",
+                user: true,
+                admin: false,
+                visits: 1
+            },
+            {
+                fname: "Marc",
+                lname: "Kuban",
+                user: true,
+                admin: false,
+                visits: 1
+            },
+            {
+                fname: "Cheryl",
+                lname: "Sambern",
+                user: true,
+                admin: false,
+                visits: 1
+            },
+            {
+                fname: "Elizabeth",
+                lname: "Holmess",
+                user: true,
+                admin: false,
+                visits: 1
+            }
+        ]
         const {
             isLoading
         } = this.props.auth0
@@ -92,40 +140,27 @@ class WatchList extends Component {
 
 
         return (
-            <div className="watchLstCont">
-                <h1>My Crypto Watchlist</h1>
-                {this.state.coinsWatchList.length > 0 &&
-                    this.state.coinsWatchList.map((coin, idx) => {
-                        return (
-                            <div key={idx} className='coin-container' >
-                                <div className='coin-row'>
-                                    <div className='coin'>
-                                        <img src={coin.image} alt='crypto' />
-                                        <h1>{coin.name}</h1>
-                                        <p className="coin-symbol" >{coin.symbol}</p>
-                                    </div>
-                                    <div className="coin-data">
-                                        <p className="coin-price">${coin.current_price.toLocaleString()} </p>
-                                        <p className="coin-volume">${coin.total_volume.toLocaleString()}</p>
-                                        {coin.price_change_percentage_24h < 0 ? (
-                                            <p className="coin-percent red">{coin.price_change_percentage_24h.toFixed(2)}%</p>
-                                        ) : (
-                                            <p className="coin-percent green">{coin.price_change_percentage_24h.toFixed(2)}%</p>
-                                        )}
-                                        <p className="coin-marketcap">
-                                            Mkt Cap: ${coin.market_cap.toLocaleString()}
-                                        </p>
-                                        <Button
-                                            id="addToCryptoWatchList"
-                                            onClick={() => {
-                                                this.removeFromWatchlist(coin.name)
-                                            }}
-                                        ><h2><AiOutlineMinusCircle /></h2>
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>)
-                    })}
+            <div className="adminCont">
+                <h1>Admin Dashboard</h1>
+                <div className='adminHeader'>
+                    <h5>First Name</h5>
+                    <h5>Last Name</h5>
+                    <h5>User</h5>
+                    <h5>Admin</h5>
+                    <h5>Visits</h5>
+                    <h5>Remove</h5>
+                </div>
+                {userSample.map((user, idx) => {
+                    return (
+                        <div className={"adminRow"} ket={idx}>
+                            <h6>{user.fname}</h6>
+                            <h6>{user.lname}</h6>
+                            <h6>{JSON.stringify(user.user)}</h6>
+                            <h6>{JSON.stringify(user.admin)}</h6>
+                            <h6 id="adminVisit">{user.visits}</h6>
+                            <Button><h6><AiOutlineMinusCircle /></h6></Button>
+                        </div>)
+                })}
             </div>
         )
     }
@@ -133,4 +168,4 @@ class WatchList extends Component {
 
 }
 
-export default withAuth0(WatchList);
+export default withAuth0(Admin);
